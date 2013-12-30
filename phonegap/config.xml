@@ -16,4 +16,9 @@
     <author href="#" email="david.d.campbell@gmail.com">
         David Campbell 
     </author>
+        
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+    </feature>
+        
 </widget>
