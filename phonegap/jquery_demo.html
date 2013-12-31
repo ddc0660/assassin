@@ -10,7 +10,7 @@
                     url: 'http://1.code-newyears-2013.appspot.com/',
                     dataType: 'jsonp',
                     success: function(data){
-                        alert(data);
+                        $('#box').html(data[0]);
                         }
                     });
                 alert('end');
@@ -19,5 +19,6 @@
         </head>
     <body>
         hello
+        <div id='box'></div>
     </body>
 </html>
