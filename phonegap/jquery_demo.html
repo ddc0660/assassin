@@ -10,7 +10,11 @@
                     url: 'http://1.code-newyears-2013.appspot.com/',
                     dataType: 'jsonp',
                     success: function(data){
-                        $('#box').html(data[0]);
+                        alert('hi');
+                        },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('nope');
+                        alert(errorThrown);
                         }
                     });
                 alert('end');
