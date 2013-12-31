@@ -85,7 +85,8 @@ class FindNearbyHandler(webapp2.RequestHandler):
         users = db.GqlQuery("SELECT * FROM Player")
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.write('Assassin: ')
-        self.response.write(self.request.get('email<BR>'))
+        self.response.write(self.request.get('email'))
+        self.response.write('<BR>')
         for user in users:
             self.response.write(user.name)
             self.response.write(', ')
