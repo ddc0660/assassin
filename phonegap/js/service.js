@@ -1,5 +1,5 @@
 var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
-    
+
 function CallService() {
     "use strict";
     $.ajax({
@@ -25,22 +25,35 @@ function onError(request, status, error) {
 function JoinGame(name, email, latitude, longitude) {
     "use strict";
     console.log("JoinGame");
-    console.log(name);
-    console.log(email);
-    var user = [{   "name": name, 
-                    "email": email,
-                    "locationLat": latitude,
-                    "locationLon": longitude }];
-    var j = JSON.stringify( {Player: user} );
-    console.log(j);
-    $('#result').html(j);
-    $.ajax({
-        type: "POST",
-        url: webServiceURL,
-        data: j,
-        contentType: "application/jsonp; charset=utf-8",
-        dataType: "jsonp",
-        success: OnSuccess,
-        failure: onError
-    });
+    $.post(webServiceURL + "JoinGame", 
+           {name: name, 
+            email: email, 
+            locationLat: latitude,
+            locationLon: longitude}, 
+           function (data) { 
+            console.log(data);
+        });
+}
+
+function UpdateLocation(email, latitude, longitude) {
+    "use strict";
+    console.log("UpdateLocation");
+    $.post(webServiceURL + "UpdateLocation",
+           {email: email,
+            locationLat: latitude,
+            locationLon: longitude},
+           function (data) {
+            console.log(data);
+        });
+}
+
+function FindNearby(email) {
+    "use strict";
+    console.log("FindNearby");
+    console.log("email: " + email);
+    $.get(webServiceURL + "FindNearby",
+          {email: email},
+          function (data) {
+            console.log("FindNearby success: " + data);
+        });
 }

@@ -15,14 +15,14 @@
             
             // onSuccess Geolocation
             function onSuccess(position) {
-                /*if(typeof(Storage)!=="undefined") {
+                if(typeof(Storage)!=="undefined") {
                     sessionStorage.latitude = position.coords.latitude;
                     sessionStorage.longitude = position.coords.longitude;
                 }
                 else
                 {
                     console.log("Sorry, your browser does not support web storage...");
-                }*/
+                }
                                 
                 var element = document.getElementById('geolocation');
                 element.innerHTML = 
@@ -45,10 +45,11 @@
             
             $(document).ready(function() {
                 console.log("document ready");
-                /*sessionStorage.longitude = 5;
-                sessionStorage.latitude = 10;*/
+                sessionStorage.longitude = 5;
+                sessionStorage.latitude = 10;
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
+                    event.preventDefault();
                     CallService();
                 });
                 $("#btnJoinGame").click(function() {
@@ -58,6 +59,12 @@
                     var email = $('#email').val();
                     
                     JoinGame(name, email, sessionStorage.latitude, sessionStorage.longitude);
+                });
+                $("#btnFindNearby").click(function() {
+                    console.log("btnFindNearby clicked");
+                    event.preventDefault();
+                    var email = $('#email').val();
+                    FindNearby(email);
                 });
             });
         </script>
@@ -76,8 +83,10 @@
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
             <input id="btnCallService" type="submit" value="Call Service" >
             <input id="btnJoinGame" type="submit" value="Join Game" >
+            
+            <input id="btnFindNearby" type="submit" value="Find Nearby" >
         </form>
         <div id="result">result area</div>
     </body>
-    <script type="text/javascript" src="phonegap.js"></script>
+    <!--<script type="text/javascript" src="phonegap.js"></script>-->
 </html>
