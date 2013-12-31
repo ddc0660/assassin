@@ -4,46 +4,20 @@
         <title>Assassin</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8">
-            $(function() {
-                    alert('start');
-                
-//                    $.get(
-//                        {
-//                            url: "http://1.code-newyears-2013.appspot.com/",
-//                            data: "{}",
-//                            //contentType: "application/json; charset=utf-8",
-//                            //dataType: "html",
-//                            success: function(d) {
-//                                alert(d);
-//                            },
-//                            dataType: 'html'
-//                        });
-                    
-                $("#requestXML").click(function() {
-                    alert('clicked');
-                    $.ajax({
-                        type: "GET",
-                        url: "http://1.code-newyears-2013.appspot.com/",
-                        data: "{}",
-                        cache: false,
-                        dataType: "xml",
-                        success: onSuccess
+            $(document).ready(function(){
+                alert('start');
+                $.ajax({
+                    url: 'http://1.code-newyears-2013.appspot.com/',
+                    dataType: 'jsonp',
+                    success: function(data){
+                        alert(data);
+                        }
                     });
+                alert('end');
                 });
-                
-                    alert('end');
-                
-                function onSuccess(data)
-            {
-                alert(data);
-            }
-                });    
         </script>
         </head>
     <body>
         hello
-        
-        <input id="requestXML" type="button" value="Request XML" />
     </body>
 </html>
-        
