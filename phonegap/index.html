@@ -15,6 +15,15 @@
             
             // onSuccess Geolocation
             function onSuccess(position) {
+                if(typeof(Storage)!=="undefined") {
+                    sessionStorage.latitude = position.coords.latitude;
+                    sessionStorage.longitude = position.coords.longitude;
+                }
+                else
+                {
+                    console.log("Sorry, your browser does not support web storage...");
+                }
+                                
                 var element = document.getElementById('geolocation');
                 element.innerHTML = 
                     'Latitude: ' + position.coords.latitude + '<br />' +
@@ -36,6 +45,8 @@
             
             $(document).ready(function() {
                 console.log("document ready");
+                sessionStorage.longitude = 5;
+                sessionStorage.latitude = 10;
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
                     CallService();
@@ -43,7 +54,10 @@
                 $("#btnJoinGame").click(function() {
                     console.log("btnJoinGame clicked");
                     event.preventDefault();
-                    JoinGame();
+                    var name = $('#name').val();
+                    var email = $('#email').val();
+                    
+                    JoinGame(name, email, sessionStorage.latitude, sessionStorage.longitude);
                 });
             });
         </script>
@@ -52,11 +66,18 @@
     <body>
         <h1>Assassin Game</h1>
         <p id="geolocation">Finding geolocation...</p>
-        <form>
+        <form action="/">
+            <input type="text" id="name" placeholder="Name" >
+            <br>
+            <input type="text" id="email" placeholder="Email" >
+            <br>
+            
+            
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
             <input id="btnCallService" type="submit" value="Call Service" >
             <input id="btnJoinGame" type="submit" value="Join Game" >
         </form>
+        <div id="result">result area</div>
     </body>
     <!--<script type="text/javascript" src="phonegap.js"></script>-->
 </html>

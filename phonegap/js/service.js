@@ -22,18 +22,22 @@ function onError(request, status, error) {
     console.log(error);
 }
 
-function JoinGame() {
+function JoinGame(name, email, latitude, longitude) {
     "use strict";
     console.log("JoinGame");
-    var user = [{   "name": "David", 
-                    "email": "david.d.campbell@gmail.com",
-                    "locationLat": "0",
-                    "locationLon": "0" }];
-    console.log(JSON.stringify( {Player: user} ));
+    console.log(name);
+    console.log(email);
+    var user = [{   "name": name, 
+                    "email": email,
+                    "locationLat": latitude,
+                    "locationLon": longitude }];
+    var j = JSON.stringify( {Player: user} );
+    console.log(j);
+    $('#result').html(j);
     $.ajax({
         type: "POST",
         url: webServiceURL,
-        data: JSON.stringify({ User: user }),
+        data: j,
         contentType: "application/jsonp; charset=utf-8",
         dataType: "jsonp",
         success: OnSuccess,
