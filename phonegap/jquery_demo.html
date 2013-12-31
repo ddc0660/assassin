@@ -4,27 +4,46 @@
         <title>Assassin</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8">
-            $(document).ready(function() { 
+            $(function() {
                     alert('start');
                 
-                    $.get(
-                        {
-                            url: "http://1.code-newyears-2013.appspot.com/",
-                            data: "{}",
-                            //contentType: "application/json; charset=utf-8",
-                            //dataType: "html",
-                            success: function(d) {
-                                alert(d);
-                            },
-                            dataType: 'html'
-                        });
+//                    $.get(
+//                        {
+//                            url: "http://1.code-newyears-2013.appspot.com/",
+//                            data: "{}",
+//                            //contentType: "application/json; charset=utf-8",
+//                            //dataType: "html",
+//                            success: function(d) {
+//                                alert(d);
+//                            },
+//                            dataType: 'html'
+//                        });
                     
+                $("#requestXML").click(function() {
+                    alert('clicked');
+                    $.ajax({
+                        type: "GET",
+                        url: "http://1.code-newyears-2013.appspot.com/",
+                        data: "{}",
+                        cache: false,
+                        dataType: "xml",
+                        success: onSuccess
+                    });
+                });
+                
                     alert('end');
+                
+                function onSuccess(data)
+            {
+                alert(data);
+            }
                 });    
         </script>
         </head>
     <body>
         hello
+        
+        <input id="requestXML" type="button" value="Request XML" />
     </body>
 </html>
         
