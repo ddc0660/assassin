@@ -26,8 +26,8 @@ class Player(db.Model):
     name = db.StringProperty(required=True)
     role = db.StringProperty(required=True)
     email = db.EmailProperty()
-    locationLat = 0.0
-    locationLon = 0.0
+    locationLat = db.FloatProperty()
+    locationLon = db.FloatProperty()
 
 
 class SlashHandler(webapp2.RequestHandler):
@@ -46,26 +46,36 @@ class Custom404(webapp2.RequestHandler):
 class JoinGameHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
-    def post(self, page):
+    def post(self):
         user = Player(name = self.request.get('name'),
                       role = "assassin",
                       email = db.Email(self.request.get('email')),
-                      locationLat = self.request.get('locationLat'),
-                      locationLon = self.request.get('locationLon'))
+                      locationLat = float(self.request.get('locationLat')),
+                      locationLon = float(self.request.get('locationLon')))
         user.put()
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+    def options(self):
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers['Content-Type'] = 'text/csv'
+        self.response.out.write(self.dump_csv())
 
 class UpdateLocationHandler(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Hello world!')
-    def post(self, page):
+    def post(self):
         users = db.GqlQuery("SELECT * FROM Player WHERE email IN :1",
                             [self.request.get('email')])
   
         for user in users:
-            user.locationLat = self.request.get('locationLat')
-            user.locationLon = self.request.get('locationLon')
+            user.locationLat = float(self.request.get('locationLat'))
+            user.locationLon = float(self.request.get('locationLon'))
             db.put(user)
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+    def options(self):
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers['Content-Type'] = 'text/csv'
+        self.response.out.write(self.dump_csv())
 
 
 class FindNearbyHandler(webapp2.RequestHandler):
@@ -73,8 +83,9 @@ class FindNearbyHandler(webapp2.RequestHandler):
         assassin = db.GqlQuery("SELECT * FROM Player WHERE email IN :1",
                                [db.Email(self.request.get('email'))])
         users = db.GqlQuery("SELECT * FROM Player")
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.write('Assassin: ')
-        self.response.write(self.request.get('email'))
+        self.response.write(self.request.get('email<BR>'))
         for user in users:
             self.response.write(user.name)
             self.response.write(', ')
