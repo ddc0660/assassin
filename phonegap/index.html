@@ -16,8 +16,8 @@
             // onSuccess Geolocation
             function onSuccess(position) {
                 if(typeof(Storage)!=="undefined") {
-                    window.sessionStorage.latitude = position.coords.latitude;
-                    window.sessionStorage.longitude = position.coords.longitude;
+                    window.localStorage.latitude = position.coords.latitude;
+                    window.localStorage.longitude = position.coords.longitude;
                 }
                 else
                 {
@@ -45,12 +45,13 @@
             
             $(document).ready(function() {
                 console.log("document ready");
-                window.sessionStorage.clear();
-                window.sessionStorage.longitude = 5;
-                window.sessionStorage.latitude = 10;
-                $('#storage').append(window.sessionStorage.latitude);
-                $('#storage').append(window.sessionStorage.longitude);
-                
+                window.localStorage.clear();
+                window.localStorage.longitude = 5;
+                window.localStorage.latitude = 10;
+                $('#storage').append('blah');
+                $('#storage').append(window.localStorage.latitude);
+                $('#storage').append(window.localStorage.longitude);
+                $('#storage').append('blah');
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
                     event.preventDefault();
