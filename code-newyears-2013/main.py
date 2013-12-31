@@ -16,6 +16,7 @@
 #
 import webapp2
 import datetime
+import json
 from google.appengine.ext import db
 from google.appengine.api import users
 
@@ -30,9 +31,11 @@ class Player(db.Model):
 
 class SlashHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello world!')
-
+        self.response.headers['Content-Type'] = 'application/json'   
+        obj = { 'success': 'some var', 
+                'payload': 'some var',
+              } 
+        self.response.out.write(json.dumps(obj))
 
 class Custom404(webapp2.RequestHandler):
     def get(self):
