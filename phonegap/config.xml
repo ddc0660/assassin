@@ -7,11 +7,7 @@
         
         <!-- versionCode is optional and Android only -->
 
-<<<<<<< HEAD
 <!--    <preference name="phonegap-version" value="3.1.0" />    -->
-=======
-    <preference name="phonegap-version" value="3.1.0" />    
->>>>>>> d41a839a816ba8cd0bf6303f9239fa9c24d3685b
         
     <name>Assassin</name>
 
@@ -23,11 +19,9 @@
         David Campbell 
     </author>
         
-<!--    <feature name="Geolocation">
+    <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-    </feature>-->
-        
-    <gap:plugin name="org.apache.cordova.geolocation" />
+    </feature>
         
 <!--    <gap:plugin name="org.apache.cordova.geolocation" />-->
         
