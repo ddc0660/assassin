@@ -15,14 +15,14 @@
             
             // onSuccess Geolocation
             function onSuccess(position) {
-                if(typeof(Storage)!=="undefined") {
+                /*if(typeof(Storage)!=="undefined") {
                     sessionStorage.latitude = position.coords.latitude;
                     sessionStorage.longitude = position.coords.longitude;
                 }
                 else
                 {
                     console.log("Sorry, your browser does not support web storage...");
-                }
+                }*/
                                 
                 var element = document.getElementById('geolocation');
                 element.innerHTML = 
@@ -45,8 +45,8 @@
             
             $(document).ready(function() {
                 console.log("document ready");
-                sessionStorage.longitude = 5;
-                sessionStorage.latitude = 10;
+                /*sessionStorage.longitude = 5;
+                sessionStorage.latitude = 10;*/
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
                     CallService();
