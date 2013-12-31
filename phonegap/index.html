@@ -30,10 +30,10 @@
                     'Longitude: ' + position.coords.longitude + '<br />' + 
                     'Altitude: ' + position.coords.altitude + '<br />' +
                     'Accuracy: ' + position.coords.accuracy + '<br />' +
-                    'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                    'Heading: '            + position.coords.heading               + '<br />' +
-                    'Speed: '              + position.coords.speed                 + '<br />' +
-                    'Timestamp: '          + position.timestamp                    + '<br />';
+                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                    'Heading: ' + position.coords.heading + '<br />' +
+                    'Speed: ' + position.coords.speed + '<br />' +
+                    'Timestamp: ' + position.timestamp + '<br />';
             }
 
             // onError Callback receives a PositionError object
@@ -45,8 +45,12 @@
             
             $(document).ready(function() {
                 console.log("document ready");
+                sessionStorage.clear();
                 sessionStorage.longitude = 5;
                 sessionStorage.latitude = 10;
+                $('#storage').append(sessionStorage.latitude);
+                $('#storage').append(sessionStorage.longitude);
+                
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
                     event.preventDefault();
@@ -57,7 +61,6 @@
                     event.preventDefault();
                     var name = $('#name').val();
                     var email = $('#email').val();
-                    
                     JoinGame(name, email, sessionStorage.latitude, sessionStorage.longitude);
                 });
                 $("#btnFindNearby").click(function() {
@@ -65,6 +68,14 @@
                     event.preventDefault();
                     var email = $('#email').val();
                     FindNearby(email);
+                });
+                $("#btnUpdateLocation").click(function() {
+                    console.log("btnUpdateLocation clicked");
+                    event.preventDefault();
+                    var email = $('#email').val();
+                    var long = parseFloat($('long').val());
+                    var lat = parseFloat($('lat').val());
+                    UpdateLocation(email, lat, long);
                 });
             });
         </script>
@@ -78,6 +89,9 @@
             <br>
             <input type="text" id="email" placeholder="Email" >
             <br>
+            <input type="text" id="long" placeholder="long">
+            <br>
+            <input type="text" id="lat" placeholder="lat">
             
             
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
@@ -85,8 +99,11 @@
             <input id="btnJoinGame" type="submit" value="Join Game" >
             
             <input id="btnFindNearby" type="submit" value="Find Nearby" >
+            
+            <input id="btnUpdateLocation" type="submit" value="Update Location">
         </form>
         <div id="result">result area</div>
+        <div id="storage">storage</div>
     </body>
-    <script type="text/javascript" src="phonegap.js"></script>
+    <!--<script type="text/javascript" src="phonegap.js"></script>-->
 </html>
