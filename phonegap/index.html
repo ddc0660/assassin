@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>Assassin</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8">
             // wait for device api libraries to load
             document.addEventListener("deviceready", onDeviceReady, false);
@@ -25,12 +26,38 @@
                             'Timestamp: '          + position.timestamp                    + '<br />';
     }
 
-    // onError Callback receives a PositionError object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }        
+            // onError Callback receives a PositionError object
+            //
+            function onError(error) {
+                alert('code: '    + error.code    + '\n' +
+                      'message: ' + error.message + '\n');
+            }
+            
+            $(document).ready(function() {
+                $('ajax').click(function() {
+                    jQuery.support.cors = true;
+                    
+                    $.ajax(
+                        {
+                            type: "GET",
+                            url: "192.168.1.194:9082",
+                            data: "{}",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(data) {
+                                alert(data);
+                            },
+                            error: function(msg, url, line) {
+                                alert('nope');
+                            }
+                        });
+                    
+                    alert('button click');
+                });
+            });
+                            
+                        
+    
         </script>
     </head>
     
@@ -39,6 +66,7 @@
         <p id="geolocation">Finding geolocation...</p>
         <form>
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
+            <button id="ajax" type="button" >Call REST Service</button>
         </form>
     </body>
     <script type="text/javascript" src="phonegap.js"></script>
