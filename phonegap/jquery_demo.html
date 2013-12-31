@@ -2,28 +2,29 @@
 <html lang="en">
     <head>
         <title>Assassin</title>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8">
-            $(document).ready(function() {                    
+            $(document).ready(function() { 
+                    alert('start');
+                
                     $.get(
                         {
                             url: "http://1.code-newyears-2013.appspot.com/",
                             data: "{}",
                             //contentType: "application/json; charset=utf-8",
                             //dataType: "html",
-                            success: function(data) {
-                                alert(data);
+                            success: function(d) {
+                                alert(d);
                             },
                             dataType: 'html'
                         });
                     
-                    alert('button click');
+                    alert('end');
                 });    
         </script>
         </head>
     <body>
-    
+        hello
     </body>
-    <script type="text/javascript" src="phonegap.js"></script>
 </html>
         
