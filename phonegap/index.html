@@ -3,6 +3,7 @@
     <head>
         <title>Assassin</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/service.js" ></script>
         <script type="text/javascript" charset="utf-8">
             // wait for device api libraries to load
             document.addEventListener("deviceready", onDeviceReady, false);
@@ -21,10 +22,10 @@
                     'Altitude: ' + position.coords.altitude + '<br />' +
                     'Accuracy: ' + position.coords.accuracy + '<br />' +
                     'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                            'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +
-                            'Timestamp: '          + position.timestamp                    + '<br />';
-    }
+                    'Heading: '            + position.coords.heading               + '<br />' +
+                    'Speed: '              + position.coords.speed                 + '<br />' +
+                    'Timestamp: '          + position.timestamp                    + '<br />';
+            }
 
             // onError Callback receives a PositionError object
             //
@@ -34,41 +35,28 @@
             }
             
             $(document).ready(function() {
-                $('ajax').click(function() {
-                    jQuery.support.cors = true;
-                    
-                    $.ajax(
-                        {
-                            type: "GET",
-                            url: "http://1.code-newyears-2013.appspot.com/",
-                            data: "{}",
-                            //contentType: "application/json; charset=utf-8",
-                            //dataType: "html",
-                            success: function(data) {
-                                alert(data);
-                            },
-                            error: function(msg, url, line) {
-                                alert('nope');
-                            }
-                        });
-                    
-                    alert('button click');
+                console.log("document ready");
+                $("#btnCallService").click(function() {
+                    console.log("btnCallService clicked");
+                    CallService();
+                });
+                $("#btnJoinGame").click(function() {
+                    console.log("btnJoinGame clicked");
+                    event.preventDefault();
+                    JoinGame();
                 });
             });
-                            
-                        
-    
         </script>
     </head>
     
     <body>
-        hello world! (hi tom!)
+        <h1>Assassin Game</h1>
         <p id="geolocation">Finding geolocation...</p>
         <form>
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
-            <button id="ajax" type="button" >Call REST Service</button>
+            <input id="btnCallService" type="submit" value="Call Service" >
+            <input id="btnJoinGame" type="submit" value="Join Game" >
         </form>
-        <a href="jquery_demo.html" >jquery demo</a>
     </body>
-    <script type="text/javascript" src="phonegap.js"></script>
+    <!--<script type="text/javascript" src="phonegap.js"></script>-->
 </html>
