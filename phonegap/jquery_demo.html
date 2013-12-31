@@ -5,19 +5,19 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8">
             $(document).ready(function(){
-                alert('start');
                 $.ajax({
                     url: 'http://1.code-newyears-2013.appspot.com/',
                     dataType: 'jsonp',
                     success: function(data){
-                        alert('hi');
-                        },
+                        //$('#box').html("world");
+                        console.log(data);
+                        $('#box').html(data.payload + '</br>' + data.success);
+                    },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('nope');
                         alert(errorThrown);
                         }
                     });
-                alert('end');
                 });
         </script>
         </head>
