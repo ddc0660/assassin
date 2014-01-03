@@ -65,9 +65,13 @@ assassinApp.controller('LoginCtrl', function ($scope, $http) {
     }
 });
 
-assassinApp.controller('LocationCtrl', function ($scope, geolocation) {
+assassinApp.controller('LocationCtrl', function ($scope, $http, geolocation) {
     console.log('LocationCtrl');
-    alert('LocationCtrl');
+    
+    $scope.join = function() {
+        JoinGame($http);
+    }
+        
     geolocation.getCurrentPosition(function (position) {
         console.log('geolocation success');
         alert('Latitude: ' + position.coords.latitude + '\n' +
@@ -78,10 +82,34 @@ assassinApp.controller('LocationCtrl', function ($scope, geolocation) {
           'Heading: ' + position.coords.heading           + '\n' +
           'Speed: ' + position.coords.speed             + '\n' +
           'Timestamp: ' + position.timestamp                + '\n');
+        $scope.p = 'Latitude: ' + position.coords.latitude + '<br />' +
+                    'Longitude: ' + position.coords.longitude + '<br />' + 
+                    'Altitude: ' + position.coords.altitude + '<br />' +
+                    'Accuracy: ' + position.coords.accuracy + '<br />' +
+                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                    'Heading: ' + position.coords.heading + '<br />' +
+                    'Speed: ' + position.coords.speed + '<br />' +
+                    'Timestamp: ' + position.timestamp + '<br />';
+        sessionStorage.setItem('longitude', position.coords.longitude);
+        sessionStorage.setItem('latitude', position.coords.latitude);
+        JoinGame($http);
     }, function () {
         console.log('geolocation failed');
         alert('geolocation failed');
     });
+        
     console.log('leaving LocationCtrl');
-    alert('leaving LocationCtrl');
 });
+
+function JoinGame($http) {
+    console.log("JoinGame");
+    var params = {'name': localStorage.getItem('name'),
+                'email': localStorage.getItem('email'),
+                'locationLat': sessionStorage.getItem('latitude'),
+                'locationLon': sessionStorage.getItem('longitude')};
+    console.log(params);
+    $http.post(webServiceURL + "JoinGame", params)
+        .success(function (data) {
+            console.log(data);
+        });
+}
