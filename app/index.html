@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="assassinApp">
     <head>
         <title>Assassin</title>
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="js/service.js" ></script>
+        <script src="scripts/angular.min.js" ></script>
+        <script src="scripts/jquery-1.10.2.min.js"></script>
+        <script src="scripts/service.js" ></script>
+        <script src="scripts/controllers.js" ></script>
         <script type="text/javascript" charset="utf-8">
             // wait for device api libraries to load
             document.addEventListener("deviceready", onDeviceReady, false);
@@ -82,13 +84,17 @@
         </script>
     </head>
     
-    <body>    
+    <body ng-controller="LoginCtrl">   
+        
+        <h1>Assassin - Login</h1>
+        <input ng-model="name" placeholder="Name">
+        <input ng-model="email" placeholder="Email">
+        <button ng-click="login(name, email)">Login</button>
+        <p>Welcome back {{ name }}. You're logged in as {{ email }}.</p>
+        <a href='location.html'>Geolocation Demo</a>
+        
         <p id="geolocation">Finding geolocation...</p>
         <form action="/">
-            <input type="text" id="name" placeholder="Name" >
-            <br>
-            <input type="text" id="email" placeholder="Email" >
-            <br>
             <input type="text" id="long" placeholder="long">
             <br>
             <input type="text" id="lat" placeholder="lat">
@@ -105,5 +111,7 @@
         <div id="result">result area</div>
         <div id="storage">storage</div>
     </body>
+<!--
     <script type="text/javascript" src="phonegap.js"></script>
+-->
 </html>
