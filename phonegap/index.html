@@ -48,11 +48,9 @@
                 window.sessionStorage.clear();
                 window.sessionStorage.longitude = 5;
                 window.sessionStorage.latitude = 10;
-                $('#storage').append('blah');
                 $('#storage').append(window.sessionStorage.latitude);
                 $('#storage').append('<br>');
                 $('#storage').append(window.sessionStorage.longitude);
-                $('#storage').append('blah');
                 $("#btnCallService").click(function() {
                     console.log("btnCallService clicked");
                     event.preventDefault();
@@ -84,8 +82,7 @@
         </script>
     </head>
     
-    <body>
-        <h1>Assassin Game</h1>
+    <body>    
         <p id="geolocation">Finding geolocation...</p>
         <form action="/">
             <input type="text" id="name" placeholder="Name" >

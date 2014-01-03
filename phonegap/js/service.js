@@ -26,10 +26,7 @@ function JoinGame(name, email, latitude, longitude) {
     "use strict";
     console.log("JoinGame");
     $.post(webServiceURL + "JoinGame", 
-           {name: name, 
-            email: email, 
-            locationLat: latitude,
-            locationLon: longitude}, 
+           {name: name, email: email, locationLat: latitude, locationLon: longitude}, 
            function (data) { 
             console.log(data);
         });
@@ -39,9 +36,7 @@ function UpdateLocation(email, latitude, longitude) {
     "use strict";
     console.log("UpdateLocation");
     $.post(webServiceURL + "UpdateLocation",
-           {email: email,
-            locationLat: latitude,
-            locationLon: longitude},
+           {email: email, locationLat: latitude, locationLon: longitude}, 
            function (data) {
             console.log(data);
         });
