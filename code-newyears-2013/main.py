@@ -56,8 +56,9 @@ class JoinGameHandler(webapp2.RequestHandler):
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
     def options(self):
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
         self.response.headers['Content-Type'] = 'text/csv'
-        self.response.out.write(self.dump_csv())
+        #self.response.out.write(self.dump_csv())
 
 class UpdateLocationHandler(webapp2.RequestHandler):
     def get(self):
@@ -74,8 +75,9 @@ class UpdateLocationHandler(webapp2.RequestHandler):
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
     def options(self):
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
         self.response.headers['Content-Type'] = 'text/csv'
-        self.response.out.write(self.dump_csv())
+        #self.response.out.write(self.dump_csv())
 
 
 class FindNearbyHandler(webapp2.RequestHandler):
@@ -84,12 +86,18 @@ class FindNearbyHandler(webapp2.RequestHandler):
                                [db.Email(self.request.get('email'))])
         users = db.GqlQuery("SELECT * FROM Player")
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
         self.response.write('Assassin: ')
         self.response.write(self.request.get('email'))
         self.response.write('<BR>')
         for user in users:
             self.response.write(user.name)
             self.response.write(', ')
+    def options(self):
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
+        #self.response.headers['Content-Type'] = 'text/csv'
+        #self.response.out.write(self.dump_csv())
 
 
 urls = [

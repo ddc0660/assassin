@@ -71,6 +71,14 @@ assassinApp.controller('LocationCtrl', function ($scope, $http, geolocation) {
     $scope.join = function() {
         JoinGame($http);
     }
+    
+    $scope.updateLocation = function() {
+        UpdateLocation($http);
+    }
+    
+    $scope.findNearby = function() {
+        FindNearby($http);
+    }
         
     geolocation.getCurrentPosition(function (position) {
         console.log('geolocation success');
@@ -103,13 +111,33 @@ assassinApp.controller('LocationCtrl', function ($scope, $http, geolocation) {
 
 function JoinGame($http) {
     console.log("JoinGame");
-    var params = {'name': localStorage.getItem('name'),
-                'email': localStorage.getItem('email'),
-                'locationLat': sessionStorage.getItem('latitude'),
-                'locationLon': sessionStorage.getItem('longitude')};
+    var params = {email: localStorage.getItem('email'),
+                  name: localStorage.getItem('name'),
+                  locationLat: sessionStorage.getItem('latitude'),
+                  locationLon: sessionStorage.getItem('longitude')};
     console.log(params);
     $http.post(webServiceURL + "JoinGame", params)
         .success(function (data) {
             console.log(data);
         });
 }
+
+function UpdateLocation($http) {
+    console.log("UpdateLocation");
+    var params = {email: localStorage.getItem('email'),
+                locationLat: sessionStorage.getItem('latitude'),
+                locationLon: sessionStorage.getItem('longitude')};
+    console.log(params);
+    $http.post(webServiceURL + "UpdateLocation", params)
+        .success(function (data) {
+            console.log(data);
+        });
+}
+
+function FindNearby($http) {
+    console.log("FindNearby");
+    $http.get(webServiceURL + "FindNearby", {params: {email: "david.d.campbell@gmail.com"}})
+        .success(function (data) {
+            console.log(data);
+        });
+}                                                                                                                                                                                 
