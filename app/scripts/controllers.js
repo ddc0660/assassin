@@ -59,9 +59,21 @@ assassinApp.controller('LoginCtrl', function ($scope, $http) {
         console.error('HTTP GET failed');
     });
     
+    $scope.email = localStorage.getItem('email');
+    $scope.name = localStorage.getItem('name');
+    
+    $scope.loggedIn = ($scope.email != null && $scope.name != null);
+    
     $scope.login = function(name, email) {
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
+        $scope.loggedIn = true;
+    }
+    
+    $scope.logOff = function() {
+        localStorage.removeItem('name');
+        localStorage.removeItem('email');
+        $scope.loggedIn = false;
     }
 });
 

@@ -85,20 +85,28 @@
     </head>
     
     <body ng-controller="LoginCtrl">   
-        
         <h1>Assassin - Login</h1>
-        <input ng-model="name" placeholder="Name">
-        <input ng-model="email" placeholder="Email">
-        <button ng-click="login(name, email)">Login</button>
-        <p>Welcome back {{ name }}. You're logged in as {{ email }}.</p>
-        <a href='location.html'>Geolocation Demo</a>
+        <div ng-hide="loggedIn">
+            <input ng-model="name" placeholder="Name">
+            <input ng-model="email" placeholder="Email">
+            <button ng-click="login(name, email)">Login</button>
+        </div>
+        <div ng-show="loggedIn">
+            <p>Welcome back {{ name }}. You're logged in as {{ email }}.</p>
+            <button ng-click="logOff()">Log Off</button>
+        </div>
+        
+        <p>
+            <a href='location.html'>Geolocation Demo</a>
+        </p>
         
         <p id="geolocation">Finding geolocation...</p>
         <form action="/">
-            <input type="text" id="long" placeholder="long">
-            <br>
-            <input type="text" id="lat" placeholder="lat">
-            
+            <div>
+                <input type="text" id="long" placeholder="long">
+                <br>
+                <input type="text" id="lat" placeholder="lat">
+            </div>
             
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
             <input id="btnCallService" type="submit" value="Call Service" >
