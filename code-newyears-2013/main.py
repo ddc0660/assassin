@@ -101,9 +101,9 @@ class FindNearbyHandler(webapp2.RequestHandler):
 
 
 urls = [
-  ('/JoinGame', JoinGameHandler),
-  ('/UpdateLocation', UpdateLocationHandler),
-  ('/FindNearby', FindNearbyHandler),
+  ('/(?i)JoinGame', JoinGameHandler),
+  ('/(?i)UpdateLocation', UpdateLocationHandler),
+  ('/(?i)FindNearby', FindNearbyHandler),
   ('/', SlashHandler),
   ('/.*', Custom404)
   ]
