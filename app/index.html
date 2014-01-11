@@ -1,87 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="assassinApp">
     <head>
+        <meta charset="utf-8">
         <title>Assassin</title>
-        <script src="scripts/angular.min.js" ></script>
-        <script src="scripts/jquery-1.10.2.min.js"></script>
-        <script src="scripts/service.js" ></script>
-        <script src="scripts/controllers.js" ></script>
-        <script type="text/javascript" charset="utf-8">
-            // wait for device api libraries to load
-            document.addEventListener("deviceready", onDeviceReady, false);
-            
-            // device api's are available
-            function onDeviceReady() {
-                navigator.geolocation.getCurrentPosition(onSuccess, onError);
-            }
-            
-            // onSuccess Geolocation
-            function onSuccess(position) {
-                if(typeof(Storage)!=="undefined") {
-                    window.sessionStorage.latitude = position.coords.latitude;
-                    window.sessionStorage.longitude = position.coords.longitude;
-                }
-                else
-                {
-                    console.log("Sorry, your browser does not support web storage...");
-                }
-                                
-                var element = document.getElementById('geolocation');
-                element.innerHTML = 
-                    'Latitude: ' + position.coords.latitude + '<br />' +
-                    'Longitude: ' + position.coords.longitude + '<br />' + 
-                    'Altitude: ' + position.coords.altitude + '<br />' +
-                    'Accuracy: ' + position.coords.accuracy + '<br />' +
-                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
-                    'Heading: ' + position.coords.heading + '<br />' +
-                    'Speed: ' + position.coords.speed + '<br />' +
-                    'Timestamp: ' + position.timestamp + '<br />';
-            }
-
-            // onError Callback receives a PositionError object
-            //
-            function onError(error) {
-                alert('code: '    + error.code    + '\n' +
-                      'message: ' + error.message + '\n');
-            }
-            
-            $(document).ready(function() {
-                console.log("document ready");
-                window.sessionStorage.clear();
-                window.sessionStorage.longitude = 5;
-                window.sessionStorage.latitude = 10;
-                $('#storage').append(window.sessionStorage.latitude);
-                $('#storage').append('<br>');
-                $('#storage').append(window.sessionStorage.longitude);
-                $("#btnCallService").click(function() {
-                    console.log("btnCallService clicked");
-                    event.preventDefault();
-                    CallService();
-                });
-                $("#btnJoinGame").click(function() {
-                    console.log("btnJoinGame clicked");
-                    event.preventDefault();
-                    var name = $('#name').val();
-                    var email = $('#email').val();
-                    JoinGame(name, email, sessionStorage.latitude, sessionStorage.longitude);
-                });
-                $("#btnFindNearby").click(function() {
-                    console.log("btnFindNearby clicked");
-                    event.preventDefault();
-                    var email = $('#email').val();
-                    FindNearby(email);
-                });
-                $("#btnUpdateLocation").click(function() {
-                    console.log("btnUpdateLocation clicked");
-                    event.preventDefault();
-                    var email = $('#email').val();
-                    var long = window.sessionStorage.latitude;
-                    var lat = window.sessionStorage.longitude;
-                    $('#storage').append("<BR>"+long + ", "+lat);
-                    UpdateLocation(email, lat, long);
-                });
-            });
-        </script>
+        <link rel="stylesheet" href="css/app.css"/>
     </head>
     
     <body ng-controller="LoginCtrl">   
@@ -107,17 +29,16 @@
                 <br>
                 <input type="text" id="lat" placeholder="lat">
             </div>
-            
             <input type="submit" value="Find Me!" onclick="onDeviceReady" >
-            <input id="btnCallService" type="submit" value="Call Service" >
-            <input id="btnJoinGame" type="submit" value="Join Game" >
-            
-            <input id="btnFindNearby" type="submit" value="Find Nearby" >
-            
-            <input id="btnUpdateLocation" type="submit" value="Update Location">
         </form>
-        <div id="result">result area</div>
-        <div id="storage">storage</div>
+        <div id="result"></div>
+                
+        <script src="lib/angular.min.js" ></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script>
     </body>
 <!--
     <script type="text/javascript" src="phonegap.js"></script>
