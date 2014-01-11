@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-
+//var webServiceURL = 'http://localhost:8080/';
 var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
 
 angular.module('assassinApp.controllers', []).
@@ -31,7 +31,7 @@ angular.module('assassinApp.controllers', []).
             $scope.loggedIn = false;
         }
 })
-    .controller('LocationCtrl', [function ($scope, $http, geolocation) {
+    .controller('LocationCtrl', function ($scope, $http, geolocation) {
         console.log('LocationCtrl');
         
         $scope.join = function() {
@@ -73,15 +73,24 @@ angular.module('assassinApp.controllers', []).
         });
             
         console.log('leaving LocationCtrl');
-}]);
+});
 
 
 function JoinGame($http) {
     console.log("JoinGame");
-    var params = {email: localStorage.getItem('email'),
+    var params = {email: 'a',
+                  name: 'b',
+                  locationLat: '1',
+                  locationLon: '2'};
+        
+        
+        
+        
+        
+        /*email: localStorage.getItem('email'),
                   name: localStorage.getItem('name'),
                   locationLat: sessionStorage.getItem('latitude'),
-                  locationLon: sessionStorage.getItem('longitude')};
+                  locationLon: sessionStorage.getItem('longitude')};*/
     console.log(params);
     $http.post(webServiceURL + "JoinGame", params)
         .success(function (data) {
