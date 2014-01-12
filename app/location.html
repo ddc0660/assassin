@@ -6,7 +6,10 @@
     
     <body ng-controller="LocationCtrl">    
         <h1>Assassin - Geolocation</h1>
-        {{ p }}
+        <div id="location" ng-show="">
+            Your current location is:
+            {{ p }}
+        </div>
         <button ng-click="join()">Join Game</button>
         <button ng-click="updateLocation()">Update Location</button>
         <button ng-click="findNearby()">Find Nearby</button>

@@ -1,10 +1,10 @@
-'use strict';
+(function () {
+    'use strict';
 
 /* Controllers */
-//var webServiceURL = 'http://localhost:8080/';
-var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
+    var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
 
-angular.module('assassinApp.controllers', []).
+    angular.module('assassinApp.controllers', []).
     controller('LoginCtrl', function ($scope, $http) {
         $http.jsonp(webServiceURL + '?callback=JSON_CALLBACK').
         success(function (data) {
@@ -17,35 +17,23 @@ angular.module('assassinApp.controllers', []).
         $scope.email = localStorage.getItem('email');
         $scope.name = localStorage.getItem('name');
         
-        $scope.loggedIn = ($scope.email != null && $scope.name != null);
+        $scope.loggedIn = ($scope.email !== null && $scope.name !== null);
         
         $scope.login = function(name, email) {
             localStorage.setItem('name', name);
             localStorage.setItem('email', email);
             $scope.loggedIn = true;
-        }
+        };
         
         $scope.logOff = function() {
             localStorage.removeItem('name');
             localStorage.removeItem('email');
             $scope.loggedIn = false;
-        }
-})
+        };
+    })
     .controller('LocationCtrl', function ($scope, $http, geolocation) {
         console.log('LocationCtrl');
-        
-        $scope.join = function() {
-            JoinGame($http);
-        }
-        
-        $scope.updateLocation = function() {
-            UpdateLocation($http);
-        }
-        
-        $scope.findNearby = function() {
-            FindNearby($http);
-        }
-            
+
         geolocation.getCurrentPosition(function (position) {
             console.log('geolocation success');
             alert('Latitude: ' + position.coords.latitude + '\n' +
@@ -71,49 +59,64 @@ angular.module('assassinApp.controllers', []).
             console.log('geolocation failed');
             alert('geolocation failed');
         });
+        
+        $scope.join = function() {
+            JoinGame($http);
+        };
+        
+        $scope.updateLocation = function() {
+            UpdateLocation($http);
+        };
+        
+        $scope.findNearby = function() {
+            FindNearby($http);
+        };
+            
+
             
         console.log('leaving LocationCtrl');
-});
+    });
 
 
-function JoinGame($http) {
-    console.log("JoinGame");
-    var params = {email: 'a',
-                  name: 'b',
-                  locationLat: '1',
-                  locationLon: '2'};
-        
-        
-        
-        
-        
-        /*email: localStorage.getItem('email'),
-                  name: localStorage.getItem('name'),
-                  locationLat: sessionStorage.getItem('latitude'),
-                  locationLon: sessionStorage.getItem('longitude')};*/
-    console.log(params);
-    $http.post(webServiceURL + "JoinGame", params)
-        .success(function (data) {
-            console.log(data);
-        });
-}
+    function JoinGame($http) {
+        console.log("JoinGame");
+        var params = {email: 'a',
+                      name: 'b',
+                      locationLat: '1',
+                      locationLon: '2'};
+            
+            
+            
+            
+            
+            /*email: localStorage.getItem('email'),
+                      name: localStorage.getItem('name'),
+                      locationLat: sessionStorage.getItem('latitude'),
+                      locationLon: sessionStorage.getItem('longitude')};*/
+        console.log(params);
+        $http.post(webServiceURL + "JoinGame", params)
+            .success(function (data) {
+                console.log(data);
+            });
+    }
 
-function UpdateLocation($http) {
-    console.log("UpdateLocation");
-    var params = {email: localStorage.getItem('email'),
-                locationLat: sessionStorage.getItem('latitude'),
-                locationLon: sessionStorage.getItem('longitude')};
-    console.log(params);
-    $http.post(webServiceURL + "UpdateLocation", params)
-        .success(function (data) {
-            console.log(data);
-        });
-}
-
-function FindNearby($http) {
-    console.log("FindNearby");
-    $http.get(webServiceURL + "FindNearby", {params: {email: "david.d.campbell@gmail.com"}})
-        .success(function (data) {
-            console.log(data);
-        });
-}
+    function UpdateLocation($http) {
+        console.log("UpdateLocation");
+        var params = {email: localStorage.getItem('email'),
+                    locationLat: sessionStorage.getItem('latitude'),
+                    locationLon: sessionStorage.getItem('longitude')};
+        console.log(params);
+        $http.post(webServiceURL + "UpdateLocation", params)
+            .success(function (data) {
+                console.log(data);
+            });
+    }
+    
+    function FindNearby($http) {
+        console.log("FindNearby");
+        $http.get(webServiceURL + "FindNearby", {params: {email: "david.d.campbell@gmail.com"}})
+            .success(function (data) {
+                console.log(data);
+            });
+    }
+}());
