@@ -9,19 +9,7 @@
                
                function ($scope, $http) {
                      
-                    try {
-                        if(navigator.connection.type == Connection.NONE) {
-                            $scope.isNetworkAvailable = 'No Internet Access';
-                        }
-                        else {
-                            $scope.isNetworkAvailable = 'Internet Access Enabled';
-                        }
-                    }
-                    catch(e){
-                        console.error('Unable to get connection type. Phonegap is either not ready or not available.');
-                        $scope.isNetworkAvailable = 'Unknown';
-                    }
-                   
+                   document.addEventListener("deviceready", onDeviceReady($scope), false);                 
                    
                     // this ping is just to hit the server for no real reason
                     // TODO: refactor this out for an actual attempt to connect to server    
@@ -145,6 +133,27 @@
         console.log('leaving LocationCtrl');
     });
 
+    
+    
+    function onDeviceReady($scope) {
+        CheckConnectionStatus($scope);
+    }
+    
+    function CheckConnectionStatus($scope) {
+        try {
+            if(navigator.connection.type == Connection.NONE) {
+                $scope.isNetworkAvailable = 'No Internet Access';
+            }
+            else {
+                $scope.isNetworkAvailable = 'Internet Access Enabled';
+            }
+        }
+        catch(e){
+            console.error('Unable to get connection type. Phonegap is either not ready or not available.');
+            $scope.isNetworkAvailable = 'Unknown';
+        }
+    }
+    
 
     function JoinGame($http) {
         console.log("JoinGame");

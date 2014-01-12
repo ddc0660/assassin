@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns       = "http://www.w3.org/ns/widgets"
-            xmlns:gap   = "http://phonegap.com/ns/1.0"
-            id          = "com.assassin"
-            versionCode = "10"
-            version     = "0.0.1" >
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.assassin"
+        versionCode = "10"
+        version     = "0.0.1" >
         
         <!-- versionCode is optional and Android only -->
 
@@ -12,21 +12,13 @@
     <name>Assassin</name>
 
     <description>
-        An example for phonegap build docs. 
+        A GPS-based game to play Assassin with your friends. 
     </description>
 
     <author href="#" email="david.d.campbell@gmail.com">
         David Campbell 
     </author>
-        
-<!--
-    <feature name="Geolocation">
-        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-    </feature>
--->
-        
-        <gap:plugin name="org.apache.cordova.geolocation" />
-        <gap:plugin name="org.apache.cordova.network-information" />
-        
-        
+    
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.network-information" />        
 </widget>
