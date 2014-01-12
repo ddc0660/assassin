@@ -8,12 +8,19 @@
     controller('LoginCtrl', 
                
                function ($scope, $http) {
-                   
-                    $scope.isNetworkAvailable = 'Internet Access Enabled';
-                   
-                    if(navigator.connection.type == Connection.NONE) {
-                        $scope.isNetworkAvailable = 'No Internet Access';
-                    } 
+                     
+                    try {
+                        if(navigator.connection.type == Connection.NONE) {
+                            $scope.isNetworkAvailable = 'No Internet Access';
+                        }
+                        else {
+                            $scope.isNetworkAvailable = 'Internet Access Enabled';
+                        }
+                    }
+                    catch(e){
+                        console.error('Unable to get connection type. Phonegap is either not ready or not available.');
+                        $scope.isNetworkAvailable = 'Unknown';
+                    }
                    
                    
                     // this ping is just to hit the server for no real reason
