@@ -18,6 +18,7 @@ import webapp2
 import datetime
 import urllib2
 import json
+from math import sin, cos, sqrt, asin, atan2, radians
 from google.appengine.ext import db
 from google.appengine.api import users
 
@@ -81,18 +82,64 @@ class UpdateLocationHandler(webapp2.RequestHandler):
 
 
 class FindNearbyHandler(webapp2.RequestHandler):
+    def isPlayerInRange(self, lat1, lon1, lat2, lon2, distInMeters):
+        self.response.write('<BR>')
+	self.response.write(lat1)
+        self.response.write('<BR>')
+        self.response.write(lat2)
+        self.response.write('<BR>')
+        self.response.write(lon1)
+        self.response.write('<BR>')
+        self.response.write(lon2)
+        self.response.write('<BR>')
+        """
+        Calculate the great circle distance between two points 
+        on the earth (specified in decimal degrees) using Haversine formula
+        """
+        # convert decimal degrees to radians 
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * atan2(sqrt(a),sqrt(1-a)) 
+        self.response.write(c)
+
+        # Get the distance as meters
+        dist = c * 6367009
+
+        self.response.write('<BR>')
+	self.response.write(lat1)
+        self.response.write('<BR>')
+        self.response.write(lat2)
+        self.response.write('<BR>')
+        self.response.write(lon1)
+        self.response.write('<BR>')
+        self.response.write(lon2)
+        self.response.write('<BR>')
+        self.response.write(dist)
+        self.response.write('<BR>')
+        return dist <= distInMeters
+
     def get(self):
-        assassin = db.GqlQuery("SELECT * FROM Player WHERE email IN :1",
-                               [db.Email(self.request.get('email'))])
-        users = db.GqlQuery("SELECT * FROM Player")
+        assassinQuery = db.GqlQuery("SELECT * FROM Player WHERE email = :1",
+                               db.Email(self.request.get('email')))
+        userQuery = db.GqlQuery("SELECT * FROM Player")
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
         self.response.write('Assassin: ')
         self.response.write(self.request.get('email'))
         self.response.write('<BR>')
-        for user in users:
-            self.response.write(user.name)
-            self.response.write(', ')
+        for assassin in assassinQuery:
+            assassinLat = assassin.locationLat
+            assassinLon = assassin.locationLon
+
+        for user in userQuery:
+            if self.isPlayerInRange(assassinLat, assassinLon, user.locationLat, user.locationLon, self.request.get('distance')):
+                self.response.write(user.name)
+                self.response.write(', ')
+
     def options(self):
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
