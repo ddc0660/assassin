@@ -4,35 +4,32 @@
 
 angular.module('assassinApp.services', []).
 
-
     factory('phonegapReady', function () {
-        console.log('phonegapReady service');
         return function (fn) {
-          var queue = [];
+            var queue = [];
     
-          var impl = function () {
-            queue.push(Array.prototype.slice.call(arguments));
-          };
+            var impl = function () {
+                queue.push(Array.prototype.slice.call(arguments));
+            };
     
-          document.addEventListener('deviceready', function () {
-            queue.forEach(function (args) {
-              fn.apply(this, args);
-            });
-            impl = fn;
-          }, false);
+            document.addEventListener('deviceready', function () {
+                queue.forEach(function (args) {
+                    fn.apply(this, args);
+                });
+                impl = fn;
+            }, false);
           
-          return function () {
-            return impl.apply(this, arguments);
-          };
+            return function () {
+                return impl.apply(this, arguments);
+            };
         };
-      })
+    })
 
 
     .factory('geolocation', function($rootScope, phonegapReady){
-        console.log('geolocation service');
-                    return {
-                        getCurrentPosition: phonegapReady(function (onSuccess, onError, options) {
-                            navigator.geolocation.getCurrentPosition(function () {
+        return {
+            getCurrentPosition: phonegapReady(function (onSuccess, onError, options) {
+                navigator.geolocation.getCurrentPosition(function () {
                                 var that = this,
                                     args = arguments;
                                 if (onSuccess) {
@@ -49,8 +46,7 @@ angular.module('assassinApp.services', []).
                                         onError.apply(that, args);
                                     });
                                 }
-                            },
-                                                                     options);
-                        })
-                    };
-                });
+                            }, options);
+            })
+        };
+    });
