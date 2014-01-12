@@ -11,7 +11,7 @@
                    
                     $scope.isNetworkAvailable = 'Internet Access Enabled';
                    
-                    if(navigator.network.connection.type == Connection.NONE) {
+                    if(navigator.connection.type == Connection.NONE) {
                         $scope.isNetworkAvailable = 'No Internet Access';
                     } 
                    

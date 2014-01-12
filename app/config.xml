@@ -25,6 +25,8 @@
     </feature>
 -->
         
-    <gap:plugin name="org.apache.cordova.geolocation" />
+        <gap:plugin name="org.apache.cordova.geolocation" />
+        <gap:plugin name="org.apache.cordova.network-information" />
+        
         
 </widget>
