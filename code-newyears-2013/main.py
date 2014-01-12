@@ -83,15 +83,6 @@ class UpdateLocationHandler(webapp2.RequestHandler):
 
 class FindNearbyHandler(webapp2.RequestHandler):
     def isPlayerInRange(self, lat1, lon1, lat2, lon2, distInMeters):
-        self.response.write('<BR>')
-	self.response.write(lat1)
-        self.response.write('<BR>')
-        self.response.write(lat2)
-        self.response.write('<BR>')
-        self.response.write(lon1)
-        self.response.write('<BR>')
-        self.response.write(lon2)
-        self.response.write('<BR>')
         """
         Calculate the great circle distance between two points 
         on the earth (specified in decimal degrees) using Haversine formula
@@ -104,23 +95,11 @@ class FindNearbyHandler(webapp2.RequestHandler):
         dlat = lat2 - lat1 
         a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
         c = 2 * atan2(sqrt(a),sqrt(1-a)) 
-        self.response.write(c)
 
         # Get the distance as meters
         dist = c * 6367009
-
-        self.response.write('<BR>')
-	self.response.write(lat1)
-        self.response.write('<BR>')
-        self.response.write(lat2)
-        self.response.write('<BR>')
-        self.response.write(lon1)
-        self.response.write('<BR>')
-        self.response.write(lon2)
-        self.response.write('<BR>')
-        self.response.write(dist)
-        self.response.write('<BR>')
-        return dist <= distInMeters
+        dm = float(distInMeters)
+        return (dist <= dm)
 
     def get(self):
         assassinQuery = db.GqlQuery("SELECT * FROM Player WHERE email = :1",
