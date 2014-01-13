@@ -70,65 +70,7 @@
         $scope.findNearby = function () {
             FindNearby($http);
         };
-            
-       /* $scope.startTracking = function() {
-            var tracking_data = [];
-            var watch_id = navigator.geolocation.watchPosition(
-                // Success
-                function(position) {
-                    tracking_data.push(position);
-                },
-                // Error
-                function(error) {
-                    console.log(error);
-                },
-                // Settings
-                { frequency: 3000, enableHighAccuracy: true });
-        };*/
-        
-        /*$scope.stopTracking = function() {
-            // Stop tracking the user
-            navigator.geolocation.clearWatch(watch_id);
-	
-            // Save the tracking data
-            //localStorage.setItem(track_id, JSON.stringify(tracking_data));
-            
-            // Set the initial Lat and Long of the Google Map
-            var myLatLng = new google.maps.LatLng(tracking_data[0].coords.latitude, tracking_data[0].coords.longitude);
-        
-            // Google Map options
-            var myOptions = {
-                zoom: 15,
-                center: myLatLng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-        
-            // Create the Google Map, set options
-            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        
-            var trackCoords = [];
-            
-            // Add each GPS entry to an array
-            for(var i=0; i<tracking_data.length; i++){
-                trackCoords.push(new google.maps.LatLng(tracking_data[i].coords.latitude, tracking_data[i].coords.longitude));
-            }
-            
-            // Plot the GPS entries as a line on the Google Map
-            var trackPath = new google.maps.Polyline({
-                path: trackCoords,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2
-            });
-        
-            // Apply the line to the map
-            trackPath.setMap(map);
-            
-            // Reset watch_id and tracking_data 
-            var watch_id = null;
-            var tracking_data = null;
-        };*/
-            
+                        
         console.log('leaving LocationCtrl');
     });
     
