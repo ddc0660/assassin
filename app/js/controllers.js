@@ -26,13 +26,13 @@
         
         $scope.loggedIn = ($scope.email !== null && $scope.name !== null);
         
-        $scope.login = function(name, email) {
+        $scope.login = function (name, email) {
             localStorage.setItem('name', name);
             localStorage.setItem('email', email);
             $scope.loggedIn = true;
         };
         
-        $scope.logOff = function() {
+        $scope.logOff = function () {
             localStorage.removeItem('name');
             localStorage.removeItem('email');
             $scope.loggedIn = false;
@@ -59,19 +59,19 @@
             alert('geolocation failed');
         });
         
-        $scope.join = function() {
+        $scope.join = function () {
             JoinGame($http);
         };
         
-        $scope.updateLocation = function() {
+        $scope.updateLocation = function () {
             UpdateLocation($http);
         };
         
-        $scope.findNearby = function() {
+        $scope.findNearby = function () {
             FindNearby($http);
         };
             
-        $scope.startTracking = function() {
+       /* $scope.startTracking = function() {
             var tracking_data = [];
             var watch_id = navigator.geolocation.watchPosition(
                 // Success
@@ -84,9 +84,9 @@
                 },
                 // Settings
                 { frequency: 3000, enableHighAccuracy: true });
-        };
+        };*/
         
-        $scope.stopTracking = function() {
+        /*$scope.stopTracking = function() {
             // Stop tracking the user
             navigator.geolocation.clearWatch(watch_id);
 	
@@ -127,21 +127,19 @@
             // Reset watch_id and tracking_data 
             var watch_id = null;
             var tracking_data = null;
-        };
+        };*/
             
         console.log('leaving LocationCtrl');
     });
     
     function CheckConnectionStatus($scope, connection) {
         try {
-            if(navigator.connection.type == Connection.NONE) {
+            if (navigator.connection.type === Connection.NONE) {
                 $scope.isNetworkAvailable = 'No Internet Access';
-            }
-            else {
+            } else {
                 $scope.isNetworkAvailable = 'Internet Access Enabled';
             }
-        }
-        catch(e){
+        } catch (e) {
             console.error('Unable to get connection type. Phonegap is either not ready or not available.');
             $scope.isNetworkAvailable = 'Unknown';
         }
@@ -149,16 +147,10 @@
     
 
     function JoinGame($http) {
-        console.log("JoinGame");
         var params = {email: 'a',
                       name: 'b',
                       locationLat: '1',
                       locationLon: '2'};
-            
-            
-            
-            
-            
             /*email: localStorage.getItem('email'),
                       name: localStorage.getItem('name'),
                       locationLat: sessionStorage.getItem('latitude'),
