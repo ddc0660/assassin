@@ -26,6 +26,7 @@
         
         $scope.loggedIn = ($scope.email !== null && $scope.name !== null);
         
+        // TODO: as I'm learning more about this AngularJS stuff, this should really be encapsulated into a service
         $scope.login = function (name, email) {
             localStorage.setItem('name', name);
             localStorage.setItem('email', email);
@@ -79,6 +80,7 @@
         console.log('leaving LocationCtrl');
     });
     
+    // TODO: move to service
     function CheckConnectionStatus($scope, connection) {
         try {
             if (navigator.connection.type === Connection.NONE) {
@@ -92,7 +94,7 @@
         }
     }
     
-
+    // TODO: move to service
     function JoinGame($http) {
         var params = {email: 'a',
                       name: 'b',
@@ -109,6 +111,7 @@
             });
     }
 
+    // TODO: move to service
     function UpdateLocation($http) {
         console.log("UpdateLocation");
         var params = {email: localStorage.getItem('email'),
@@ -121,6 +124,7 @@
             });
     }
     
+    // TODO: move to service
     function FindNearby($http) {
         console.log("FindNearby");
         $http.get(webServiceURL + "FindNearby", {params: {email: "david.d.campbell@gmail.com"}})
