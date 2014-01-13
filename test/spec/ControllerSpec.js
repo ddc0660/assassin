@@ -1,10 +1,4 @@
-describe("A suite", function() {
-    it("contains spec with an expectation", function() {
-        expect(true).toBe(true);
-    });
-});
-
-describe('Testing a controller', function() {
+describe('Login controller', function() {
     var $scope = null;
     var ctrl = null;
     
@@ -23,7 +17,23 @@ describe('Testing a controller', function() {
             $scope: $scope
         });
     }));
-    it('should start with smoketest populated', function(){
-        expect($scope.smoketest).toEqual('white');
-    });
+    
+    describe('logging in', function(){
+        // setup
+        var sample_name = 'sample name',
+            sample_email = 'sample@email.xxx';
+        it('should store name and email when logging in', function() {
+            // make the call
+            $scope.login(sample_name, sample_email);
+            
+            expect(localStorage.getItem('name')).toBe(sample_name);
+            expect(localStorage.getItem('email')).toBe(sample_email);
+        });
+        it('should set loggedIn', function(){
+            // make the call
+            $scope.login(sample_name, sample_email);
+            
+            expect($scope.loggedIn).toBe(true);
+        })
+    });    
 });

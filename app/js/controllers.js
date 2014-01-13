@@ -2,12 +2,13 @@
     'use strict';
     
 /* Controllers */
+    // TODO: probably should be stored in some sort of configuration area
     var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
 
     var app = angular.module('assassinApp.controllers', []);
     
-    app.controller('LoginCtrl', function ($scope, $http) {
-        $scope.smoketest = 'white';
+    app.controller('LoginCtrl', function ($scope, $http) {        
+        // TODO: this really has nothing to do with logging in - should be removed
         CheckConnectionStatus($scope);
                    
         // this ping is just to hit the server for no real reason
@@ -39,8 +40,6 @@
     });
     
     app.controller('LocationCtrl', function ($scope, $http, geolocation) {
-        console.log('LocationCtrl');
-
         geolocation.getCurrentPosition(function (position) {
             console.log('geolocation success');
             alert('Latitude: ' + position.coords.latitude + '\n' +
