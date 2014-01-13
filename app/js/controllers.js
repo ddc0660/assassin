@@ -40,6 +40,11 @@
     });
     
     app.controller('LocationCtrl', function ($scope, $http, geolocation) {
+        console.log('test log');
+        console.error('test error');
+        console.info('test info');
+        console.warn('test warn');
+        
         geolocation.getCurrentPosition(function (position) {
             console.log('geolocation success');
             alert('Latitude: ' + position.coords.latitude + '\n' +
