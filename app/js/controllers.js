@@ -1,44 +1,44 @@
 (function () {
     'use strict';
-
+    
 /* Controllers */
     var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
 
-    angular.module('assassinApp.controllers', []).
-    controller('LoginCtrl', 
-               
-               function ($scope, $http) {
-                     
-                   document.addEventListener("deviceready", onDeviceReady($scope), false);                 
+    var app = angular.module('assassinApp.controllers', []);
+    
+    app.controller('LoginCtrl', function ($scope, $http) {
+        $scope.smoketest = 'white';
+        CheckConnectionStatus($scope);
                    
-                    // this ping is just to hit the server for no real reason
-                    // TODO: refactor this out for an actual attempt to connect to server    
-                    $http.jsonp(webServiceURL + '?callback=JSON_CALLBACK').
-                    success(function (data) {
-                        $scope.response = data;
-                    }).
-                    error(function (data) {
-                        console.error('HTTP GET failed');
-                    });
-                    
-                    $scope.email = localStorage.getItem('email');
-                    $scope.name = localStorage.getItem('name');
-                    
-                    $scope.loggedIn = ($scope.email !== null && $scope.name !== null);
-                    
-                    $scope.login = function(name, email) {
-                        localStorage.setItem('name', name);
-                        localStorage.setItem('email', email);
-                        $scope.loggedIn = true;
-                    };
-                    
-                    $scope.logOff = function() {
-                        localStorage.removeItem('name');
-                        localStorage.removeItem('email');
-                        $scope.loggedIn = false;
-                    };
-                })
-    .controller('LocationCtrl', function ($scope, $http, geolocation) {
+        // this ping is just to hit the server for no real reason
+        // TODO: refactor this out for an actual attempt to connect to server    
+        $http.jsonp(webServiceURL + '?callback=JSON_CALLBACK').
+        success(function (data) {
+            $scope.response = data;
+        }).
+        error(function (data) {
+            console.error('HTTP GET failed');
+        });
+        
+        $scope.email = localStorage.getItem('email');
+        $scope.name = localStorage.getItem('name');
+        
+        $scope.loggedIn = ($scope.email !== null && $scope.name !== null);
+        
+        $scope.login = function(name, email) {
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+            $scope.loggedIn = true;
+        };
+        
+        $scope.logOff = function() {
+            localStorage.removeItem('name');
+            localStorage.removeItem('email');
+            $scope.loggedIn = false;
+        };
+    });
+    
+    app.controller('LocationCtrl', function ($scope, $http, geolocation) {
         console.log('LocationCtrl');
 
         geolocation.getCurrentPosition(function (position) {
@@ -132,14 +132,8 @@
             
         console.log('leaving LocationCtrl');
     });
-
     
-    
-    function onDeviceReady($scope) {
-        CheckConnectionStatus($scope);
-    }
-    
-    function CheckConnectionStatus($scope) {
+    function CheckConnectionStatus($scope, connection) {
         try {
             if(navigator.connection.type == Connection.NONE) {
                 $scope.isNetworkAvailable = 'No Internet Access';
