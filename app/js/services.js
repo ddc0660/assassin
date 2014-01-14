@@ -51,6 +51,22 @@
         };
     });
 
+
+
+    app.factory('accountService', function () {
+        return {
+            login: function (name, email) {
+                localStorage.setItem('name', name);
+                localStorage.setItem('email', email);
+            }
+        };
+    })
+
+
+
+
+    // sample services begin here
+
     app.factory('$basicService', function () {
         return {
             exciteText: function (msg) {

@@ -1,3 +1,38 @@
+describe('Assassin services', function () {
+    var svc;
+
+    describe('Account Service', function () {
+        beforeEach(function () {
+            module('assassinApp.services');
+            inject(function (accountService) {
+                svc = accountService;
+            });
+        });
+
+        it('should have a login() function', function () {
+            expect(angular.isFunction(svc.login)).toBe(true);
+        });
+
+        describe('login()', function () {
+            it('should store name and email to localStorage', function () {
+                var sample_name = 'sample name',
+                    sample_email = 'sample@email.abc';
+
+                svc.login(sample_name, sample_email);
+
+                expect(localStorage.getItem('name')).toBe(sample_name);
+                expect(localStorage.getItem('email')).toBe(sample_email);
+            });
+
+            afterEach(function () {
+                localStorage.clear();
+            })
+        });
+    });
+});
+
+// begin sample service tests
+
 describe('$basicService tests', function () {
     var basicSvc;
 
