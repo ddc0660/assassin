@@ -50,10 +50,23 @@ describe('Assassin services', function () {
     });
 
     describe('Game Service', function () {
+        var httpBackend;
+
         beforeEach(function () {
-            inject(function (gameService) {
+
+            inject(function ($httpBackend, gameService) {
+                httpBackend = $httpBackend;
+                // use this when I want to handle a specific request
+                /*httpBackend.whenPOST('location', {
+                    hello: 'world'
+                });*/
                 svc = gameService;
             });
+        });
+
+        afterEach(function () {
+            httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingRequest();
         });
 
         it('should have a joinGame() function', function () {
@@ -61,9 +74,38 @@ describe('Assassin services', function () {
         });
 
         describe('joinGame()', function () {
-            it('accept $http and webserviceurl constant', function () {
+            it('should post vars', function () {
+                // set up some data for the http call
+                /*
+                var returnData = {
+                    excited: true
+                };
+                */
+
+                // expectPOST to make sure this is called
+                // TODO: hardcoded url needs to access the assassinApp.config constant instead
+                httpBackend.expectPOST('http://1.code-newyears-2013.appspot.com/' + 'JoinGame').respond({});
+
+                // create an object with a function to spy on
+                //var test = {
+                //    handler: function () {}
+                //};
+                // set up a spy for the callback handler
+                //spyOn(test, '
+                //handler ');
+
+                // make the call
+                //var returnedPromise = svc.joinGame();
                 svc.joinGame();
-                expect(false).toBe(true);
+
+                // use the handler you're spying on to handle the resolution of the promise
+                //returnedPromise.then(test.handler);
+
+                // flush the backend to execute the request to do the expectPOST assert
+                httpBackend.flush();
+
+                // check your spy to see if it's been called with the returned value
+                //expect(test.handler).toHaveBeenCalledWith(returnData);
             });
         });
     });

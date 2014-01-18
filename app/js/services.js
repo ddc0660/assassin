@@ -3,7 +3,7 @@
 
     /* Services */
 
-    var app = angular.module('assassinApp.services', []);
+    var app = angular.module('assassinApp.services', ['assassinApp.config']);
 
     app.factory('phonegapReady', function () {
         return function (fn) {
@@ -66,10 +66,24 @@
         }
     });
 
-    app.factory('gameService', function () {
+    app.factory('gameService', function ($http, WEB_SERVICE_URL) {
         return {
             joinGame: function () {
-
+                var params = {
+                    email: 'a',
+                    name: 'b',
+                    locationLat: '1',
+                    locationLon: '2'
+                };
+                /*email: localStorage.getItem('email'),
+                      name: localStorage.getItem('name'),
+                      locationLat: sessionStorage.getItem('latitude'),
+                      locationLon: sessionStorage.getItem('longitude')};*/
+                console.log(params);
+                $http.post(WEB_SERVICE_URL + "JoinGame", params)
+                    .success(function (data) {
+                        console.log(data);
+                    });
             }
         }
     });
