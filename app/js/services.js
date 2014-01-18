@@ -58,9 +58,13 @@
             login: function (name, email) {
                 localStorage.setItem('name', name);
                 localStorage.setItem('email', email);
+            },
+            logOff: function () {
+                localStorage.removeItem('name');
+                localStorage.removeItem('email');
             }
-        };
-    })
+        }
+    });
 
 
 
