@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="assassinApp">
-    <head>
-        <title>Assassin</title>
-    </head>
-    
-    <body ng-controller="LocationCtrl">    
-        <h1>Assassin - Geolocation</h1>
-        <div id="location" ng-show="p!==null">
-            Your current location is:
-            <ul>
-                <li>Latitude: {{ position.coords.latitude }}</li>
-                <li>Longitude: {{ position.coords.longitude }}</li>
-                <li>Altidue: {{ position.coords.altitude }}</li>
-                <li>Accuracy: {{ position.coords.accuracy }}</li>
-                <li>Altitude Accuracy: {{ position.coords.altitudeAccuracy }}</li>
-                <li>Heading: {{ position.coords.heading }}</li>
-                <li>Speed: {{ position.coords.speed }}</li>
-                <li>Timestamp: {{ position.coords.timestamp }}</li>
-            </ul>
-        </div>
-        <button ng-click="join()">Join Game</button>
-        <button ng-click="updateLocation()">Update Location</button>
-        <button ng-click="findNearby()">Find Nearby</button>
-        
-        <a href="index.html">Home Page</a>
-        
-        <script src="lib/angular.min.js" ></script>
-        <script src="js/app.js"></script>
-        <script src="js/services.js"></script>
-        <script src="js/controllers.js"></script>
-        <script src="js/filters.js"></script>
-        <script src="js/directives.js"></script>
-    </body>
-    <script type="text/javascript" src="phonegap.js"></script>
+
+<head>
+    <title>Assassin</title>
+</head>
+
+<body ng-controller="LocationCtrl">
+    <h1>Assassin - Geolocation</h1>
+    <div id="location" ng-show="p!==null">
+        Your current location is:
+        <ul>
+            <li>Latitude: {{ position.coords.latitude }}</li>
+            <li>Longitude: {{ position.coords.longitude }}</li>
+            <li>Altidue: {{ position.coords.altitude }}</li>
+            <li>Accuracy: {{ position.coords.accuracy }}</li>
+            <li>Altitude Accuracy: {{ position.coords.altitudeAccuracy }}</li>
+            <li>Heading: {{ position.coords.heading }}</li>
+            <li>Speed: {{ position.coords.speed }}</li>
+            <li>Timestamp: {{ position.coords.timestamp }}</li>
+        </ul>
+    </div>
+    <button ng-click="join()">Join Game</button>
+    <button ng-click="updateLocation()">Update Location</button>
+    <button ng-click="findNearby()">Find Nearby</button>
+
+    <a href="index.html">Home Page</a>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+</body>
+<script type="text/javascript" src="phonegap.js"></script>
+
 </html>

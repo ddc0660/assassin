@@ -3,17 +3,16 @@
 
     /* Controllers */
     // TODO: probably should be stored in some sort of configuration area
-    var webServiceURL = 'http://1.code-newyears-2013.appspot.com/';
 
-    var app = angular.module('assassinApp.controllers', []);
+    var app = angular.module('assassinApp.controllers', ['assassinApp.config']);
 
-    app.controller('LoginCtrl', function ($scope, $http, accountService) {
+    app.controller('LoginCtrl', function ($scope, $http, accountService, WEB_SERVICE_URL) {
         // TODO: this really has nothing to do with logging in - should be removed
         CheckConnectionStatus($scope);
 
         // this ping is just to hit the server for no real reason
         // TODO: refactor this out for an actual attempt to connect to server    
-        $http.jsonp(webServiceURL + '?callback=JSON_CALLBACK').
+        $http.jsonp(WEB_SERVICE_URL + '?callback=JSON_CALLBACK').
         success(function (data) {
             $scope.response = data;
         }).
@@ -37,7 +36,7 @@
         };
     });
 
-    app.controller('LocationCtrl', function ($scope, $http, geolocation) {
+    app.controller('LocationCtrl', function ($scope, $http, geolocation, WEB_SERVICE_URL) {
         console.log('test log');
         console.error('test error');
         console.info('test info');
@@ -56,22 +55,22 @@
             $scope.position = position;
             sessionStorage.setItem('longitude', position.coords.longitude);
             sessionStorage.setItem('latitude', position.coords.latitude);
-            JoinGame($http);
+            JoinGame($http, WEB_SERVICE_URL);
         }, function () {
             console.log('geolocation failed');
             alert('geolocation failed');
         });
 
         $scope.join = function () {
-            JoinGame($http);
+            JoinGame($http, WEB_SERVICE_URL);
         };
 
         $scope.updateLocation = function () {
-            UpdateLocation($http);
+            UpdateLocation($http, WEB_SERVICE_URL);
         };
 
         $scope.findNearby = function () {
-            FindNearby($http);
+            FindNearby($http, WEB_SERVICE_URL);
         };
 
         console.log('leaving LocationCtrl');
@@ -92,7 +91,7 @@
     }
 
     // TODO: move to service
-    function JoinGame($http) {
+    function JoinGame($http, webServiceURL) {
         var params = {
             email: 'a',
             name: 'b',
@@ -111,7 +110,7 @@
     }
 
     // TODO: move to service
-    function UpdateLocation($http) {
+    function UpdateLocation($http, webServiceURL) {
         console.log("UpdateLocation");
         var params = {
             email: localStorage.getItem('email'),
@@ -126,7 +125,7 @@
     }
 
     // TODO: move to service
-    function FindNearby($http) {
+    function FindNearby($http, webServiceURL) {
         console.log("FindNearby");
         $http.get(webServiceURL + "FindNearby", {
             params: {
