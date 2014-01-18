@@ -36,12 +36,7 @@
         };
     });
 
-    app.controller('LocationCtrl', function ($scope, $http, geolocation, WEB_SERVICE_URL) {
-        console.log('test log');
-        console.error('test error');
-        console.info('test info');
-        console.warn('test warn');
-
+    app.controller('LocationCtrl', function ($scope, $http, geolocation, gameService, WEB_SERVICE_URL) {
         geolocation.getCurrentPosition(function (position) {
             console.log('geolocation success');
             alert('Latitude: ' + position.coords.latitude + '\n' +
@@ -62,18 +57,16 @@
         });
 
         $scope.join = function () {
-            JoinGame($http, WEB_SERVICE_URL);
+            gameService.joinGame();
         };
 
         $scope.updateLocation = function () {
-            UpdateLocation($http, WEB_SERVICE_URL);
+            gameService.updateLocation();
         };
 
         $scope.findNearby = function () {
-            FindNearby($http, WEB_SERVICE_URL);
+            gameService.findNearby();
         };
-
-        console.log('leaving LocationCtrl');
     });
 
     // TODO: move to service
@@ -91,49 +84,12 @@
     }
 
     // TODO: move to service
-    function JoinGame($http, webServiceURL) {
-        var params = {
-            email: 'a',
-            name: 'b',
-            locationLat: '1',
-            locationLon: '2'
-        };
-        /*email: localStorage.getItem('email'),
-                      name: localStorage.getItem('name'),
-                      locationLat: sessionStorage.getItem('latitude'),
-                      locationLon: sessionStorage.getItem('longitude')};*/
-        console.log(params);
-        $http.post(webServiceURL + "JoinGame", params)
-            .success(function (data) {
-                console.log(data);
-            });
-    }
-
-    // TODO: move to service
     function UpdateLocation($http, webServiceURL) {
-        console.log("UpdateLocation");
-        var params = {
-            email: localStorage.getItem('email'),
-            locationLat: sessionStorage.getItem('latitude'),
-            locationLon: sessionStorage.getItem('longitude')
-        };
-        console.log(params);
-        $http.post(webServiceURL + "UpdateLocation", params)
-            .success(function (data) {
-                console.log(data);
-            });
+
     }
 
     // TODO: move to service
     function FindNearby($http, webServiceURL) {
-        console.log("FindNearby");
-        $http.get(webServiceURL + "FindNearby", {
-            params: {
-                email: "david.d.campbell@gmail.com"
-            }
-        })
-            .success(function (data) {
-                console.log(data);
-            });
+
     }
 }());

@@ -84,6 +84,30 @@
                     .success(function (data) {
                         console.log(data);
                     });
+            },
+            updateLocation: function () {
+                console.log("UpdateLocation");
+                var params = {
+                    email: localStorage.getItem('email'),
+                    locationLat: sessionStorage.getItem('latitude'),
+                    locationLon: sessionStorage.getItem('longitude')
+                };
+                console.log(params);
+                $http.post(webServiceURL + "UpdateLocation", params)
+                    .success(function (data) {
+                        console.log(data);
+                    });
+            },
+            findNearby: function () {
+                console.log("FindNearby");
+                $http.get(webServiceURL + "FindNearby", {
+                    params: {
+                        email: "david.d.campbell@gmail.com"
+                    }
+                })
+                    .success(function (data) {
+                        console.log(data);
+                    });
             }
         }
     });
