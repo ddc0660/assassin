@@ -32,8 +32,7 @@
         }
 
         $scope.logOff = function () {
-            localStorage.removeItem('name');
-            localStorage.removeItem('email');
+            accountService.logOff();
             $scope.loggedIn = false;
         };
     });
