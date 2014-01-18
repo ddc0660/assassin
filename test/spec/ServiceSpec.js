@@ -1,9 +1,12 @@
 describe('Assassin services', function () {
     var svc;
 
+    beforeEach(function () {
+        module('assassinApp.services');
+    })
+
     describe('Account Service', function () {
         beforeEach(function () {
-            module('assassinApp.services');
             inject(function (accountService) {
                 svc = accountService;
             });
@@ -11,7 +14,6 @@ describe('Assassin services', function () {
 
         var sample_name = 'sample name',
             sample_email = 'sample@email.abc';
-
 
         it('should have a login() function', function () {
             expect(angular.isFunction(svc.login)).toBe(true);
@@ -43,6 +45,25 @@ describe('Assassin services', function () {
 
                 expect(localStorage.getItem('name')).toBeNull();
                 expect(localStorage.getItem('email')).toBeNull();
+            });
+        });
+    });
+
+    describe('Game Service', function () {
+        beforeEach(function () {
+            inject(function (gameService) {
+                svc = gameService;
+            });
+        });
+
+        it('should have a joinGame() function', function () {
+            expect(angular.isFunction(svc.joinGame)).toBe(true);
+        });
+
+        describe('joinGame()', function () {
+            it('accept $http and webserviceurl constant', function () {
+                svc.joinGame();
+                expect(false).toBe(true);
             });
         });
     });

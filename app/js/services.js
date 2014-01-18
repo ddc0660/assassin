@@ -66,6 +66,14 @@
         }
     });
 
+    app.factory('gameService', function () {
+        return {
+            joinGame: function () {
+
+            }
+        }
+    });
+
 
 
 
