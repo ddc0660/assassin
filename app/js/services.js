@@ -69,28 +69,29 @@
     app.factory('gameService', function ($http, WEB_SERVICE_URL) {
         return {
             joinGame: function () {
-                var params = {
-                    email: 'a',
-                    name: 'b',
-                    locationLat: '1',
-                    locationLon: '2'
-                };
-                /*email: localStorage.getItem('email'),
-                      name: localStorage.getItem('name'),
-                      locationLat: sessionStorage.getItem('latitude'),
-                      locationLon: sessionStorage.getItem('longitude')};*/
-                console.log(params);
-                $http.post(WEB_SERVICE_URL + "JoinGame", params)
-                    .success(function (data) {
-                        console.log(data);
+                $http({
+                    method: 'POST',
+                    url: WEB_SERVICE_URL + "JoinGame",
+                    params: {
+                        email: localStorage.getItem('email'),
+                        name: localStorage.getItem('name'),
+                        locationLat: sessionStorage.getItem('latitude') || 1,
+                        locationLon: sessionStorage.getItem('longitude') || 2
+                    }
+                })
+                    .success(function (d) {
+                        console.log("yay");
+                    })
+                    .error(function (d) {
+                        console.log("nope");
                     });
             },
             updateLocation: function () {
                 console.log("UpdateLocation");
                 var params = {
                     email: localStorage.getItem('email'),
-                    locationLat: sessionStorage.getItem('latitude'),
-                    locationLon: sessionStorage.getItem('longitude')
+                    locationLat: sessionStorage.getItem('latitude') || 1,
+                    locationLon: sessionStorage.getItem('longitude') || 2
                 };
                 console.log(params);
                 $http.post(WEB_SERVICE_URL + "UpdateLocation", params)

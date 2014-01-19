@@ -45,7 +45,9 @@ class Custom404(webapp2.RequestHandler):
 
 class JoinGameHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write('{Hello: world!}')
     def post(self):
         user = Player(name = self.request.get('name'),
                       role = "assassin",
@@ -54,10 +56,11 @@ class JoinGameHandler(webapp2.RequestHandler):
                       locationLon = float(self.request.get('locationLon')))
         user.put()
         self.response.headers.add_header("Access-Control-Allow-Origin", "*")
+        self.response.headers['Content-Type'] = 'application/json'
     def options(self):
-        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
-        self.response.headers.add_header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept")
-        self.response.headers['Content-Type'] = 'text/csv'
+        self.response.headers['Access-Control-Allow-Origin'] = '*'
+        self.response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Request-With, Content-Type, Accept'
+        self.response.headers['Access-Control-Allow-Methods'] = 'POST, GET'
         #self.response.out.write(self.dump_csv())
 
 class UpdateLocationHandler(webapp2.RequestHandler):
