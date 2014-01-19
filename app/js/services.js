@@ -112,28 +112,4 @@
             }
         }
     });
-
-
-
-
-    // sample services begin here
-
-    app.factory('$basicService', function () {
-        return {
-            exciteText: function (msg) {
-                return msg + '!!!';
-            }
-        };
-    });
-
-    app.factory('$httpBasedService', function ($http) {
-        return {
-            sendMessage: function (msg) {
-                return $http.get('something.json?msg=' + msg)
-                    .then(function (result) {
-                        return result.data;
-                    });
-            }
-        };
-    });
 }());

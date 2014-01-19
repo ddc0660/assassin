@@ -45,8 +45,8 @@
     });
 
     app.controller('LocationCtrl', function ($scope, $http, geolocation, gameService, WEB_SERVICE_URL) {
+        alert('location control');
         geolocation.getCurrentPosition(function (position) {
-            console.log('geolocation success');
             alert('Latitude: ' + position.coords.latitude + '\n' +
                 'Longitude: ' + position.coords.longitude + '\n' +
                 'Altitude: ' + position.coords.altitude + '\n' +

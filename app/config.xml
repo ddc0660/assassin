@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns       = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.assassin"
-        versionCode = "10"
-        version     = "0.0.1" >
-        
-        <!-- versionCode is optional and Android only -->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.assassin" versionCode="10" version="0.0.1">
 
-    <preference name="phonegap-version" value="3.1.0" />    
-        
+    <!-- versionCode is optional and Android only -->
+
+    <preference name="phonegap-version" value="3.1.0" />
+
     <name>Assassin</name>
 
     <description>
-        A GPS-based game to play Assassin with your friends. 
+        A GPS-based game to play Assassin with your friends.
     </description>
 
-    <author href="#" email="david.d.campbell@gmail.com">
-        David Campbell 
+    <author href="https://plus.google.com/+DavidCampbellsProfile" email="david.d.campbell@gmail.com">
+        David Campbell
     </author>
-    
+
     <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.network-information" />        
+    <gap:plugin name="org.apache.cordova.network-information" />
 </widget>
