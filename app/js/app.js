@@ -3,5 +3,7 @@ angular.module('assassinApp', [
     'assassinApp.services',
     'assassinApp.directives',
     'assassinApp.controllers',
-    'assassinApp.config'
+    'assassinApp.config',
+    'btford.phonegap.ready',
+    'btford.phonegap.geolocation'
 ]);

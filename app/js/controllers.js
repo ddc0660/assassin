@@ -45,7 +45,8 @@
     });
 
     app.controller('LocationCtrl', function ($scope, $http, geolocation, gameService, WEB_SERVICE_URL) {
-        alert('location control');
+        $scope.position = null;
+
         geolocation.getCurrentPosition(function (position) {
             alert('Latitude: ' + position.coords.latitude + '\n' +
                 'Longitude: ' + position.coords.longitude + '\n' +
@@ -55,13 +56,6 @@
                 'Heading: ' + position.coords.heading + '\n' +
                 'Speed: ' + position.coords.speed + '\n' +
                 'Timestamp: ' + position.timestamp + '\n');
-            $scope.position = position;
-            sessionStorage.setItem('longitude', position.coords.longitude);
-            sessionStorage.setItem('latitude', position.coords.latitude);
-            //JoinGame($http, WEB_SERVICE_URL);
-        }, function () {
-            console.log('geolocation failed');
-            alert('geolocation failed');
         });
 
         $scope.join = function () {

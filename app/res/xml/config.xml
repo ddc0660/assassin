@@ -1,0 +1,3 @@
+<features name="Geolocation">
+    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+</features>

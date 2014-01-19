@@ -9,7 +9,7 @@
 
 <body ng-controller="LocationCtrl">
     <h1>Assassin - Geolocation</h1>
-    <div id="location" ng-show="p!==null">
+    <div id="location" ng-show="position!==null">
         Your current location is:
         <ul>
             <li>Latitude: {{ position.coords.latitude }}</li>
@@ -35,6 +35,8 @@
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
+    <script src="lib/ready.js"></script>
+    <script src="lib/geolocation.js"></script>
 </body>
 <script type="text/javascript" src="phonegap.js"></script>
 
