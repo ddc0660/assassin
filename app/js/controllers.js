@@ -13,11 +13,19 @@
         // this ping is just to hit the server for no real reason
         // TODO: refactor this out for an actual attempt to connect to server    
         $http.jsonp(WEB_SERVICE_URL + '?callback=JSON_CALLBACK').
-        success(function (data) {
-            $scope.response = data;
+        success(function (data, status, headers, config) {
+            console.info('ping succeeded');
+            console.info(data);
+            console.info(status);
+            console.info(headers);
+            console.info(config);
         }).
-        error(function (data) {
-            console.error('HTTP GET failed');
+        error(function (data, status, headers, config) {
+            console.error('ping failed');
+            console.error(data || "request failed");
+            console.error(status);
+            console.error(headers);
+            console.error(config);
         });
 
         $scope.email = localStorage.getItem('email');
@@ -50,7 +58,7 @@
             $scope.position = position;
             sessionStorage.setItem('longitude', position.coords.longitude);
             sessionStorage.setItem('latitude', position.coords.latitude);
-            JoinGame($http, WEB_SERVICE_URL);
+            //JoinGame($http, WEB_SERVICE_URL);
         }, function () {
             console.log('geolocation failed');
             alert('geolocation failed');
@@ -81,15 +89,5 @@
             console.error('Unable to get connection type. Phonegap is either not ready or not available.');
             $scope.isNetworkAvailable = 'Unknown';
         }
-    }
-
-    // TODO: move to service
-    function UpdateLocation($http, webServiceURL) {
-
-    }
-
-    // TODO: move to service
-    function FindNearby($http, webServiceURL) {
-
     }
 }());

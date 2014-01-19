@@ -93,14 +93,14 @@
                     locationLon: sessionStorage.getItem('longitude')
                 };
                 console.log(params);
-                $http.post(webServiceURL + "UpdateLocation", params)
+                $http.post(WEB_SERVICE_URL + "UpdateLocation", params)
                     .success(function (data) {
                         console.log(data);
                     });
             },
             findNearby: function () {
                 console.log("FindNearby");
-                $http.get(webServiceURL + "FindNearby", {
+                $http.get(WEB_SERVICE_URL + "FindNearby", {
                     params: {
                         email: "david.d.campbell@gmail.com"
                     }
