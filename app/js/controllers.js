@@ -8,7 +8,7 @@
 
     app.controller('LoginCtrl', function ($scope, $http, accountService, WEB_SERVICE_URL) {
         // TODO: this really has nothing to do with logging in - should be removed
-        CheckConnectionStatus($scope);
+        //CheckConnectionStatus($scope);
 
         // this ping is just to hit the server for no real reason
         // TODO: refactor this out for an actual attempt to connect to server    

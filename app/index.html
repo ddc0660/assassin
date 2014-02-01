@@ -17,12 +17,14 @@
         // device APIs are available
         //
         function onDeviceReady() {
+            alert('onDeviceReady fired');
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }
     
         // onSuccess Geolocation
         //
         function onSuccess(position) {
+            alert('onSuccess');
             var element = document.getElementById('geolocation');
             element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                                 'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -79,8 +81,6 @@
     <script src="lib/geolocation.js"></script>
 </body>
 <script type="text/javascript" src="phonegap.js"></script>
-<!--
 <script src="http://debug.build.phonegap.com/target/target-script-min.js#53ebe366-71a2-11e3-aea9-22000a98b3d6"></script>
--->
 
 </html>
