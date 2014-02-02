@@ -23,7 +23,4 @@
     <gap:plugin name="org.apache.cordova.geolocation" />
     <!--<gap:plugin name="org.apache.cordova.network-information" />-->
 
-    <!--    <feature name="Geolocation">
-        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-    </feature>-->
 </widget>
