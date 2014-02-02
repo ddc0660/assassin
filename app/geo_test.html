@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="assassinApp">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Assassin</title>
-    <link rel="stylesheet" href="css/app.css" />
+    <title>Device Properties Example</title>
 
-
-
-    <!--/** GEOLOCATION EXAMPLE **/-->
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for device API libraries to load
         //
@@ -17,14 +13,12 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            alert('onDeviceReady fired');
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }
     
         // onSuccess Geolocation
         //
         function onSuccess(position) {
-            alert('onSuccess');
             var element = document.getElementById('geolocation');
             element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                                 'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -43,48 +37,10 @@
                   'message: ' + error.message + '\n');
         }
     </script>
-    <!--/** END OF GEOLOCATION EXAMPLE **/-->
-
-
-
-
 </head>
 
-<body ng-controller="LoginCtrl">
-    <h1>Assassin - Login</h1>
-    <div ng-hide="loggedIn">
-        <input ng-model="name" placeholder="Name">
-        <input ng-model="email" placeholder="Email">
-        <button ng-click="login(name, email)">Login</button>
-    </div>
-    <div ng-show="loggedIn">
-        <p>Welcome back {{ name }}. You're logged in as {{ email }}.</p>
-        <button ng-click="logOff()">Log Off</button>
-    </div>
-
-    <p>Network Status: {{ isNetworkAvailable }}</p>
-
-    <p>
-        <a href="location.html">Geolocation Demo</a>
-    </p>
-
-    <p>
-        <a href="geo_test.html">Geo Test</a>
-    </p>
-
+<body>
     <p id="geolocation">Finding geolocation...</p>
-
-    <script src="lib/angular.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/directives.js"></script>
-    <script src="lib/ready.js"></script>
-    <script src="lib/geolocation.js"></script>
 </body>
-<script type="text/javascript" src="phonegap.js"></script>
-<script src="http://debug.build.phonegap.com/target/target-script-min.js#53ebe366-71a2-11e3-aea9-22000a98b3d6"></script>
 
 </html>
