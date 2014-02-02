@@ -3,7 +3,7 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <preference name="phonegap-version" value="3.1.0" />
+    <preference name="phonegap-version" value="3.3.0" />
     <!--
     <preference name="ErrorUrl" value="error.html" />
     <preference name="LoadingDialog" value="Please wait, the app is loading" />
@@ -21,7 +21,7 @@
     </author>
 
     <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.network-information" />
+    <!--<gap:plugin name="org.apache.cordova.network-information" />-->
 
     <!--    <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
