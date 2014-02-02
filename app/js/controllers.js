@@ -12,21 +12,21 @@
 
         // this ping is just to hit the server for no real reason
         // TODO: refactor this out for an actual attempt to connect to server    
-        $http.jsonp(WEB_SERVICE_URL + '?callback=JSON_CALLBACK').
-        success(function (data, status, headers, config) {
-            console.info('ping succeeded');
-            console.info(data);
-            console.info(status);
-            console.info(headers);
-            console.info(config);
-        }).
-        error(function (data, status, headers, config) {
-            console.error('ping failed');
-            console.error(data || "request failed");
-            console.error(status);
-            console.error(headers);
-            console.error(config);
-        });
+        /*$http.jsonp(WEB_SERVICE_URL + '?callback=JSON_CALLBACK').
+success(function (data, status, headers, config) {
+    console.info('ping succeeded');
+    console.info(data);
+    console.info(status);
+    console.info(headers);
+    console.info(config);
+}).
+error(function (data, status, headers, config) {
+    console.error('ping failed');
+    console.error(data || "request failed");
+    console.error(status);
+    console.error(headers);
+    console.error(config);
+});*/
 
         $scope.email = localStorage.getItem('email');
         $scope.name = localStorage.getItem('name');
