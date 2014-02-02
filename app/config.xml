@@ -4,6 +4,9 @@
     <!-- versionCode is optional and Android only -->
 
     <preference name="phonegap-version" value="3.1.0" />
+    <preference name="ErrorUrl" value="error.html" />
+    <preference name="LoadingDialog" value="Please wait, the app is loading" />
+    <preference name="LoadingPageDialog" value="Please wait, the data is loading" />
 
     <name>Assassin</name>
 
