@@ -9,6 +9,7 @@
     <preference name="LoadingDialog" value="Please wait, the app is loading" />
     <preference name="LoadingPageDialog" value="Please wait, the data is loading" />
 -->
+    <preference name="splash-screen-duration" value="10000" />
 
     <name>Assassin</name>
 
@@ -23,5 +24,5 @@
     <gap:plugin name="org.apache.cordova.geolocation" />
     <!--<gap:plugin name="org.apache.cordova.network-information" />-->
 
-    <gap:splash src="splash.png" />
+    <gap:splash src="splash.png" gap:platform="android" gap:density="xhdpi" />
 </widget>
