@@ -21,7 +21,9 @@
     </author>
 
     <gap:plugin name="org.apache.cordova.geolocation" />
+    <!--<gap:plugin name="org.apache.cordova.splashscreen" />-->
     <!--<gap:plugin name="org.apache.cordova.network-information" />-->
 
+    <gap:splash src="splash.png" />
     <!--<gap:splash src="splash.png" gap:platform="android" gap:density="xhdpi" />-->
 </widget>
