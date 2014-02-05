@@ -1,1 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>	<widget xmlns = "http://www.w3.org/ns/widgets"		xmlns:gap = "http://phonegap.com/ns/1.0"		id        = "com.assassin"		versionCode="10"		version   = "0.0.1">		<name>Assassin</name>		<description>A GPS-based game to play Assassin with your friends.		</description>		<author href="https://plus.google.com/+DavidCampbellsProfile" email="david.d.campbell@gmail.com">David Campbell		</author>		<preference name="phonegap-version" value="3.3.0" />		<preference name="fullscreen" value="true" />		<preference name="webviewbounce" value="true" />		<preference name="prerendered-icon" value="true" />		<preference name="stay-in-webview" value="true" />		<preference name="ios-statusbarstyle" value="default" />		<preference name="detect-data-types" value="true" />		<preference name="exit-on-suspend" value="true" />		<preference name="show-splash-screen-spinner" value="true" />		<preference name="auto-hide-splash-screen" value="true" />		<preference name="EnableViewportScale" value="true" />		<preference name="MediaPlaybackRequiresUserAction" value="true" />		<preference name="AllowInlineMediaPlayback" value="true" />		<preference name="BackupWebStorage" value="cloud" />		<preference name="TopActivityIndicator" value="gray" />		<preference name="KeyboardDisplayRequiresUserAction" value="true" />		<preference name="HideKeyboardFormAccessoryBar" value="true" />		<preference name="SuppressesIncrementalRendering" value="true" />		<preference name="android-minSdkVersion" value="7" />		<preference name="android-installLocation" value="internalOnly" />		<preference name="SplashScreenDelay" value="10000" />		<preference name="ErrorUrl" value="error.html"/>		<preference name="BackgroundColor" value=""/>		<preference name="KeepRunning" value="true"/>		<preference name="DisallowOverscroll" value="true"/>		<preference name="LoadingDialog" value="Please wait, the app is loading"/> 		<preference name="LoadUrlTimeoutValue" value="20000" />		<preference name="disable-cursor" value="true" />		<gap:platform name="android" />		<feature name="http://api.phonegap.com/1.0/geolocation"/>		<feature name="http://api.phonegap.com/1.0/network"/>		<gap:plugin name="org.apache.cordova.geolocation"  />		<icon src="img/icons/icon-36.png" gap:platform="android" gap:density="ldpi" />		<icon src="img/icons/icon-48.png" gap:platform="android" gap:density="mdpi" />		<icon src="img/icons/icon-72.png" gap:platform="android" gap:density="hdpi" />		<icon src="img/icons/icon-96.png" gap:platform="android" gap:density="xhdpi" />		<icon src="img/icons/icon-144.png" gap:platform="android" gap:density="xxhdpi" />		<icon src="icon.png" />		<gap:splash src="img/splash/splash-240x400.png" gap:platform="android" gap:density="ldpi" />		<gap:splash src="img/splash/splash-320x480.png" gap:platform="android" gap:density="mdpi" />		<gap:splash src="img/splash/splash-480x800.png" gap:platform="android" gap:density="hdpi" />		<gap:splash src="img/splash/splash-720x960.png" gap:platform="android" gap:density="xhdpi" />		<gap:splash src="splash.png" />	</widget>
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.assassin" versionCode="10" version="0.0.1">
+    <name>Assassin</name>
+    <description>
+        A GPS-based game to play Assassin with your friends.</description>
+    <author href="https://plus.google.com/+DavidCampbellsProfile" email="david.d.campbell@gmail.com">
+        David Campbell
+    </author>
+    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="true" />
+    <preference name="ios-statusbarstyle" value="default" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="true" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="EnableViewportScale" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="true" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="TopActivityIndicator" value="gray" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
+    <preference name="SuppressesIncrementalRendering" value="true" />
+    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-installLocation" value="internalOnly" />
+    <preference name="ErrorUrl" value="error.html" />
+    <preference name="KeepRunning" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="LoadingDialog" value="Please wait, the app is loading" />
+    <preference name="disable-cursor" value="true" />
+    <gap:platform name="android" />
+    <feature name="http://api.phonegap.com/1.0/geolocation" />
+    <feature name="http://api.phonegap.com/1.0/network" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <icon src="img/icons/icon-36.png" gap:platform="android" gap:density="ldpi" />
+    <icon src="img/icons/icon-48.png" gap:platform="android" gap:density="mdpi" />
+    <icon src="img/icons/icon-72.png" gap:platform="android" gap:density="hdpi" />
+    <icon src="img/icons/icon-96.png" gap:platform="android" gap:density="xhdpi" />
+    <icon src="img/icons/icon-144.png" gap:platform="android" gap:density="xxhdpi" />
+    <icon src="icon.png" />
+    <gap:splash src="img/splash/splash-240x400.png" gap:platform="android" gap:density="ldpi" />
+    <gap:splash src="img/splash/splash-320x480.png" gap:platform="android" gap:density="mdpi" />
+    <gap:splash src="img/splash/splash-480x800.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="img/splash/splash-720x960.png" gap:platform="android" gap:density="xhdpi" />
+    <gap:splash src="splash.png" />
+</widget>

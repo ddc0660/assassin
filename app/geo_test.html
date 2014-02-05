@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="assassinApp">
 
 <head>
-    <title>Device Properties Example</title>
+    <meta charset="utf-8">
+    <title>Assassin</title>
+    <link rel="stylesheet" href="css/app.css" />
 
-    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for device API libraries to load
         //
@@ -20,14 +21,14 @@
         //
         function onSuccess(position) {
             var element = document.getElementById('geolocation');
-            element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                                'Longitude: '          + position.coords.longitude             + '<br />' +
-                                'Altitude: '           + position.coords.altitude              + '<br />' +
-                                'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                                'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                                'Heading: '            + position.coords.heading               + '<br />' +
-                                'Speed: '              + position.coords.speed                 + '<br />' +
-                                'Timestamp: '          + position.timestamp                    + '<br />';
+            element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                                'Longitude: ' + position.coords.longitude + '<br />' +
+                                'Altitude: ' + position.coords.altitude + '<br />' +
+                                'Accuracy: ' + position.coords.accuracy + '<br />' +
+                                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                                'Heading: ' + position.coords.heading + '<br />' +
+                                'Speed: ' + position.coords.speed + '<br />' +
+                                'Timestamp: ' + position.timestamp + '<br />';
         }
     
         // onError Callback receives a PositionError object
@@ -39,9 +40,29 @@
     </script>
 </head>
 
-<body>
+<body ng-controller="GeolocationCtrl">
     <p id="geolocation">Finding geolocation...</p>
+
+    <p>Latitude: {{ position.coords.latitude }}</p>
+    <p>Longitude: {{ position.coords.longitude }}</p>
+    <p>Altitude: {{ position.coords.altitude }}</p>
+    <p>Accuracy: {{ position.coords.accuracy }}</p>
+    <p>Altitude Accuracy: {{position.coords.altitudeAccuracy }}</p>
+    <p>Heading: {{ position.coords.heading }}</p>
+    <p>Speed: {{ position.coords.speed }}</p>
+    <p>Timestamp: {{ position.coords.timestamp }}</p>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="lib/ready.js"></script>
+    <script src="lib/geolocation.js"></script>
 </body>
+<script type="text/javascript" src="phonegap.js"></script>
 <script src="http://debug.build.phonegap.com/target/target-script-min.js#53ebe366-71a2-11e3-aea9-22000a98b3d6"></script>
 
 </html>

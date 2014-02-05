@@ -15,7 +15,7 @@
                 localStorage.removeItem('name');
                 localStorage.removeItem('email');
             }
-        }
+        };
     });
 
     app.factory('gameService', function ($http, WEB_SERVICE_URL) {
@@ -32,10 +32,12 @@
                     }
                 })
                     .success(function (d) {
-                        console.log("yay");
+                        console.log("POST to JoinGame succeeded");
                     })
                     .error(function (d) {
-                        console.log("nope");
+                        console.log("POST to JoinGame failed");
+                        console.log(d.code);
+                        console.log(d.message);
                     });
             },
             updateLocation: function () {
@@ -62,6 +64,6 @@
                         console.log(data);
                     });
             }
-        }
+        };
     });
 }());

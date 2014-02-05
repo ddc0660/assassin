@@ -36,7 +36,7 @@ error(function (data, status, headers, config) {
         $scope.login = function (name, email) {
             accountService.login(name, email);
             $scope.loggedIn = true;
-        }
+        };
 
         $scope.logOff = function () {
             accountService.logOff();
@@ -69,6 +69,20 @@ error(function (data, status, headers, config) {
         $scope.findNearby = function () {
             gameService.findNearby();
         };
+    });
+
+    app.controller('GeolocationCtrl', function ($scope, $rootScope) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            $scope.position = position;
+            sessionStorage.setItem('latitude', position.coords.latitude);
+            sessionStorage.setItem('longitude', position.coords.longitude);
+            $scope.$apply();
+        }, function (e) {
+            alert("Error retreiving position " +
+                e.code + " " + e.message);
+            console.log("Error retreiving position " +
+                e.code + " " + e.message);
+        });
     });
 
     // TODO: move to service
