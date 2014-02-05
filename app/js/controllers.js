@@ -56,6 +56,10 @@ error(function (data, status, headers, config) {
                 'Heading: ' + position.coords.heading + '\n' +
                 'Speed: ' + position.coords.speed + '\n' +
                 'Timestamp: ' + position.timestamp + '\n');
+            $scope.position = position;
+            sessionStorage.setItem('longitude', position.coords.longitude);
+            sessionStorage.setItem('latitude', position.coords.latitude);
+            $scope.$apply();
         });
 
         $scope.join = function () {
