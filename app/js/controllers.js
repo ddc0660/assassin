@@ -89,6 +89,11 @@ error(function (data, status, headers, config) {
         });
     });
 
+    app.controller('TargetDetailCtrl', ['$scope', '$routeParams',
+                                       function ($scope, $routeParams) {
+            $scope.targetId = $routeParams.targetId;
+                                       }]);
+
     // TODO: move to service
     function CheckConnectionStatus($scope, connection) {
         try {

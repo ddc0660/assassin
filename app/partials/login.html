@@ -1,0 +1,20 @@
+<h1>Assassin - Login</h1>
+<div ng-hide="loggedIn">
+    <input ng-model="name" placeholder="Name">
+    <input ng-model="email" placeholder="Email">
+    <button ng-click="login(name, email)">Login</button>
+</div>
+<div ng-show="loggedIn">
+    <p>Welcome back {{ name }}. You're logged in as {{ email }}.</p>
+    <button ng-click="logOff()">Log Off</button>
+</div>
+
+<p>Network Status: {{ isNetworkAvailable }}</p>
+
+<p>
+    <a href="location.html">Geolocation Demo</a>
+</p>
+
+<p>
+    <a href="geo_test.html">Geo Test</a>
+</p>
