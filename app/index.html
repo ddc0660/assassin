@@ -17,8 +17,10 @@
     <script src="lib/geolocation.js"></script>
 </head>
 
-<body>
-    Test
+<body ng-controller="HeaderCtrl">
+    <h1>Assassin</h1>
+    <a href="#/targets">Target List</a>
+    <button ng-click="updateLocation()">Update Location</button>
     <div ng-view></div>
 </body>
 <script type="text/javascript" src="phonegap.js"></script>

@@ -10,7 +10,7 @@ app.config(['$routeProvider',
         }).
         when('/targets', {
             templateUrl: 'partials/target-list.html',
-            controller: 'LocationCtrl'
+            controller: 'TargetListCtrl'
         }).
         when('/targets/:targetId', {
             templateUrl: 'partials/target-detail.html',
