@@ -1,4 +1,4 @@
-var app = angular.module('assassinApp.config', ['ngRoute', 'assassinApp.controllers'])
+var app = angular.module('assassinApp.config', ['ngRoute', 'assassinApp.controllers', 'google-maps'])
     .constant('WEB_SERVICE_URL', 'http://1.code-newyears-2013.appspot.com/');
 
 app.config(['$routeProvider',

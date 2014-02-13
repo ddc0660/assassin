@@ -65,11 +65,13 @@ error(function (data, status, headers, config) {
         $scope.targets = [
             {
                 'name': 'John',
-                'distance': '5'
+                'distance': '5',
+                'email': 'john@sample.com'
             },
             {
                 'name': 'Joe',
-                'distance': '15'
+                'distance': '15',
+                'email': 'joe@sample.com'
             }];
 
         $scope.position = null;
@@ -122,6 +124,13 @@ error(function (data, status, headers, config) {
     app.controller('TargetDetailCtrl', ['$scope', '$routeParams',
                                        function ($scope, $routeParams) {
             $scope.targetId = $routeParams.targetId;
+            $scope.map = {
+                center: {
+                    latitude: 45,
+                    longitude: -73
+                },
+                zoom: 8
+            };
                                        }]);
 
     // TODO: move to service

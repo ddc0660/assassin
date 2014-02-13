@@ -1,6 +1,6 @@
 <ul>
     <li ng-repeat="target in targets">
-        {{ target.name }}
+        <a href="#/targets/{{target.email}}">{{ target.name }}</a>
         <p>{{ target.distance }} units</p>
     </li>
 </ul>

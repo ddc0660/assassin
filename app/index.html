@@ -15,13 +15,20 @@
     <script src="js/directives.js"></script>
     <script src="lib/ready.js"></script>
     <script src="lib/geolocation.js"></script>
+
+    <!--TODO: find a way to extract the Google Maps scripts into the partial view-->
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDUX--QzsD5jKlPOnENQGDH1YrbZybNKRQ&sensor=true'></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src='lib/angular-google-maps.min.js'></script>
 </head>
 
 <body ng-controller="HeaderCtrl">
-    <h1>Assassin</h1>
-    <a href="#/targets">Target List</a>
-    <button ng-click="updateLocation()">Update Location</button>
-    <div ng-view></div>
+    <div id="header">
+        <h1>Assassin</h1>
+        <a href="#/targets">Target List</a>
+        <button ng-click="updateLocation()">Update Location</button>
+    </div>
+    <div id="content" ng-view></div>
 </body>
 <script type="text/javascript" src="phonegap.js"></script>
 <script src="http://debug.build.phonegap.com/target/target-script-min.js#53ebe366-71a2-11e3-aea9-22000a98b3d6"></script>
